@@ -1,0 +1,20 @@
+import { Injectable } from '@nestjs/common';
+import { User } from '../../entities/user.entity';
+import { CreateAccountDto } from '../../use-cases/create-account/dtos/create-account.dto';
+import { IUserRepository } from '../user-repository.interface';
+import * as crypto from 'crypto';
+
+@Injectable()
+export class UserInMemoryRepository implements IUserRepository {
+  private users: User[] = [];
+
+  public async save(data: CreateAccountDto): Promise<User> {
+    const newUser = { id: crypto.randomUUID(), ...data };
+
+    this.users.push(newUser);
+
+    delete newUser.password;
+
+    return newUser;
+  }
+}

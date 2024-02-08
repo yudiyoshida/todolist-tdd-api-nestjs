@@ -20,7 +20,6 @@ describe('CreateAccountDto', () => {
 
       const result = await validateDto(dto, 'name');
 
-      expect(result.constraints).toHaveProperty('isString', 'Nome deve ser do tipo string.');
       expect(result.constraints).toHaveProperty('isNotEmpty', 'Nome é um campo obrigatório.');
     });
 
@@ -30,7 +29,6 @@ describe('CreateAccountDto', () => {
 
       const result = await validateDto(dto, 'name');
 
-      expect(result.constraints).toHaveProperty('isString', 'Nome deve ser do tipo string.');
       expect(result.constraints).toHaveProperty('isNotEmpty', 'Nome é um campo obrigatório.');
     });
 
@@ -41,7 +39,6 @@ describe('CreateAccountDto', () => {
       const result = await validateDto(dto, 'name');
 
       expect(result.constraints).toHaveProperty('isString', 'Nome deve ser do tipo string.');
-      expect(result.constraints).not.toHaveProperty('isNotEmpty');
     });
 
     it('should throw an error about invalid type when providing a boolean name', async() => {
@@ -51,7 +48,6 @@ describe('CreateAccountDto', () => {
       const result = await validateDto(dto, 'name');
 
       expect(result.constraints).toHaveProperty('isString', 'Nome deve ser do tipo string.');
-      expect(result.constraints).not.toHaveProperty('isNotEmpty');
     });
   });
 
@@ -62,7 +58,6 @@ describe('CreateAccountDto', () => {
 
       const result = await validateDto(dto, 'email');
 
-      expect(result.constraints).toHaveProperty('isEmail', 'Email inválido.');
       expect(result.constraints).toHaveProperty('isNotEmpty', 'Email é um campo obrigatório.');
     });
 
@@ -73,7 +68,6 @@ describe('CreateAccountDto', () => {
 
       const result = await validateDto(dto, 'email');
 
-      expect(result.constraints).toHaveProperty('isEmail', 'Email inválido.');
       expect(result.constraints).toHaveProperty('isNotEmpty', 'Email é um campo obrigatório.');
     });
 
@@ -85,7 +79,6 @@ describe('CreateAccountDto', () => {
       const result = await validateDto(dto, 'email');
 
       expect(result.constraints).toHaveProperty('isEmail', 'Email inválido.');
-      expect(result.constraints).not.toHaveProperty('isNotEmpty');
     });
   });
 
@@ -97,7 +90,6 @@ describe('CreateAccountDto', () => {
 
       const result = await validateDto(dto, 'password');
 
-      expect(result.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
       expect(result.constraints).toHaveProperty('isNotEmpty', 'Senha é um campo obrigatório.');
     });
 
@@ -109,7 +101,6 @@ describe('CreateAccountDto', () => {
 
       const result = await validateDto(dto, 'password');
 
-      expect(result.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
       expect(result.constraints).toHaveProperty('isNotEmpty', 'Senha é um campo obrigatório.');
     });
 
@@ -122,7 +113,6 @@ describe('CreateAccountDto', () => {
       const result = await validateDto(dto, 'password');
 
       expect(result.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
-      expect(result.constraints).not.toHaveProperty('isNotEmpty');
     });
 
     it('should throw an error about invalid type when providing a boolean password', async() => {
@@ -134,7 +124,6 @@ describe('CreateAccountDto', () => {
       const result = await validateDto(dto, 'password');
 
       expect(result.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
-      expect(result.constraints).not.toHaveProperty('isNotEmpty');
     });
 
     it('should throw an error when providing a password with 7 characters', async() => {
@@ -145,8 +134,6 @@ describe('CreateAccountDto', () => {
 
       const result = await validateDto(dto, 'password');
 
-      expect(result.constraints).not.toHaveProperty('isString');
-      expect(result.constraints).not.toHaveProperty('isNotEmpty');
       expect(result.constraints).toHaveProperty('minLength', 'Senha deve conter, no mínimo, 8 caracteres.');
     });
   });

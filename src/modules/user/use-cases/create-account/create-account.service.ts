@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { ConflictException, Inject, Injectable } from '@nestjs/common';
 import { CreateAccountDto } from './dtos/create-account.dto';
 import { IUserRepository } from '../../repositories/user-repository.interface';
 import { TOKENS } from '@shared/di/tokens';
@@ -7,7 +7,12 @@ import { TOKENS } from '@shared/di/tokens';
 export class CreateAccountService {
   constructor(@Inject(TOKENS.IUserRepository) private userRepository: IUserRepository) {}
 
-  public execute(data: CreateAccountDto) {
+  public async execute(data: CreateAccountDto) {
+    const isEmailNotUnique = await this.userRepository.findByEmail(data.email);
+    if (isEmailNotUnique) {
+      throw new ConflictException('Email is already taken.');
+    }
+
     return this.userRepository.save(data);
   }
 }

@@ -4,6 +4,7 @@ import { CreateAccountDto } from './dtos/create-account.dto';
 import { UserInMemoryRepository } from '../../repositories/adapters/user-in-memory.repository';
 import { TOKENS } from '@shared/di/tokens';
 import { ConflictException } from '@nestjs/common';
+import { BcryptAdapter } from '@shared/helpers/hashing/adapters/bcrypt';
 
 describe('CreateAccountService', () => {
   let service: CreateAccountService;
@@ -21,6 +22,10 @@ describe('CreateAccountService', () => {
         {
           provide: TOKENS.IUserRepository,
           useClass: UserInMemoryRepository,
+        },
+        {
+          provide: TOKENS.IHashingHelper,
+          useClass: BcryptAdapter,
         },
       ],
     }).compile();

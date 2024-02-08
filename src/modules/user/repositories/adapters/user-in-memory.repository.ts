@@ -17,8 +17,6 @@ export class UserInMemoryRepository implements IUserRepository {
 
     this.users.push(newUser);
 
-    delete newUser.password;
-
     return newUser;
   }
 }

@@ -10,6 +10,5 @@
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
-  "modulePaths": ["<rootDir>/../"],
-  "verbose": true
+  "modulePaths": ["<rootDir>/../"]
 }

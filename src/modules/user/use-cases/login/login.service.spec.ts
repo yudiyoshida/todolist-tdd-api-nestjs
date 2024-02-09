@@ -25,9 +25,7 @@ describe('LoginService', () => {
   beforeEach(async() => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        JwtModule.register({
-          secret: process.env.JWT_SECRET || 'secret-for-tests',
-        }),
+        JwtModule.register({ secret: 'secret-for-tests-only' }),
       ],
       providers: [
         CreateAccountService,

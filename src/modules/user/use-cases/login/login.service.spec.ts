@@ -7,6 +7,8 @@ import { CreateAccountDto } from '../create-account/dtos/create-account.dto';
 import { BadRequestException } from '@nestjs/common';
 import { LoginDto } from './dtos/login.dto';
 import { BcryptAdapter } from '@shared/helpers/hashing/adapters/bcrypt';
+import { isJWT } from 'class-validator';
+import { JwtModule } from '@nestjs/jwt';
 
 describe('LoginService', () => {
   let service: LoginService;
@@ -20,6 +22,11 @@ describe('LoginService', () => {
 
   beforeEach(async() => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        JwtModule.register({
+          secret: process.env.JWT_SECRET || 'secret-for-tests',
+        }),
+      ],
       providers: [
         CreateAccountService,
         LoginService,
@@ -84,5 +91,16 @@ describe('LoginService', () => {
     const result = await service.execute(credentials);
 
     expect(result).toHaveProperty('accessToken');
+  });
+
+  it('should return a valid JWT as access token', async() => {
+    const credentials: LoginDto = {
+      email: data.email,
+      password: data.password,
+    };
+
+    const result = await service.execute(credentials);
+
+    expect(isJWT(result.accessToken)).toBeTruthy();
   });
 });

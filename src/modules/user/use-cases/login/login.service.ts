@@ -3,12 +3,15 @@ import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { LoginDto } from './dtos/login.dto';
 import { TOKENS } from '@shared/di/tokens';
 import { IHashingHelper } from '@shared/helpers/hashing/hashing.interface';
+import { JwtService } from '@nestjs/jwt';
+import { IPayload } from '@shared/interfaces/payload.interface';
 
 @Injectable()
 export class LoginService {
   constructor(
     @Inject(TOKENS.IUserRepository) private userRepository: IUserRepository,
     @Inject(TOKENS.IHashingHelper) private hashingHelper: IHashingHelper,
+    private jwtService: JwtService,
   ) {}
 
   public async execute(credential: LoginDto) {
@@ -22,6 +25,9 @@ export class LoginService {
       throw new BadRequestException('Email or password incorrect.');
     }
 
-    return { accessToken: 'OK' };
+    const payload: IPayload = { sub: account.id };
+    const accessToken = this.jwtService.sign(payload);
+
+    return { accessToken };
   }
 }

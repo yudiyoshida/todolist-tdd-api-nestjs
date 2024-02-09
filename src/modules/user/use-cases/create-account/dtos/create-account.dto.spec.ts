@@ -1,11 +1,7 @@
 import { validate } from 'class-validator';
+
 import { CreateAccountDto } from './create-account.dto';
-
-async function validateDto(dto: CreateAccountDto, field: string) {
-  const errors = await validate(dto);
-
-  return errors.find(error => error.property === field);
-}
+import { validateDto } from '@shared/validators/validate-dto';
 
 describe('CreateAccountDto', () => {
   const data: CreateAccountDto = {

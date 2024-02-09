@@ -14,7 +14,7 @@ export class CreateAccountService {
   public async execute(data: CreateAccountDto) {
     const isEmailNotUnique = await this.userRepository.findByEmail(data.email);
     if (isEmailNotUnique) {
-      throw new ConflictException('Email is already taken.');
+      throw new ConflictException('Email já está sendo utilizado.');
     }
 
     // hash password.

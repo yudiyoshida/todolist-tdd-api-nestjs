@@ -63,7 +63,7 @@ describe('LoginService', () => {
 
     return service.execute(credentials).catch(err => {
       expect(err).toBeInstanceOf(BadRequestException);
-      expect(err.response.message).toBe('Email or password incorrect.');
+      expect(err.response.message).toBe('Credenciais incorretas.');
     });
   });
 
@@ -78,7 +78,7 @@ describe('LoginService', () => {
 
     return service.execute(credentials).catch(err => {
       expect(err).toBeInstanceOf(BadRequestException);
-      expect(err.response.message).toBe('Email or password incorrect.');
+      expect(err.response.message).toBe('Credenciais incorretas.');
     });
   });
 

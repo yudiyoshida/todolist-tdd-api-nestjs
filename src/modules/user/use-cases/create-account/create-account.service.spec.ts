@@ -52,7 +52,7 @@ describe('CreateAccountService', () => {
     // second register.
     return service.execute(data).catch(err => {
       expect(err).toBeInstanceOf(ConflictException);
-      expect(err.response.message).toEqual('Email is already taken.');
+      expect(err.response.message).toEqual('Email já está sendo utilizado.');
     });
   });
 });

@@ -17,12 +17,12 @@ export class LoginService {
   public async execute(credential: LoginDto) {
     const account = await this.userRepository.findByEmail(credential.email);
     if (!account) {
-      throw new BadRequestException('Email or password incorrect.');
+      throw new BadRequestException('Credenciais incorretas.');
     }
 
     const isPassCorrect = this.hashingHelper.compare(credential.password, account.password);
     if (!isPassCorrect) {
-      throw new BadRequestException('Email or password incorrect.');
+      throw new BadRequestException('Credenciais incorretas.');
     }
 
     const payload: IPayload = { sub: account.id };

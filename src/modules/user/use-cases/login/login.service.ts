@@ -1,9 +1,9 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import { TOKENS } from '@shared/di/tokens';
-import { IPayload } from '@shared/interfaces/payload.interface';
-import { IHashingHelper } from '@shared/helpers/hashing/hashing.interface';
+import { TOKENS } from 'src/shared/di/tokens';
+import { IPayload } from 'src/shared/interfaces/payload.interface';
+import { IHashingHelper } from 'src/shared/helpers/hashing/hashing.interface';
 import { LoginDto } from './dtos/login.dto';
 import { IUserRepository } from '../../repositories/user-repository.interface';
 

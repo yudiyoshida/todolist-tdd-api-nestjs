@@ -1,7 +1,7 @@
 import { ConflictException, Inject, Injectable } from '@nestjs/common';
 
-import { TOKENS } from '@shared/di/tokens';
-import { IHashingHelper } from '@shared/helpers/hashing/hashing.interface';
+import { TOKENS } from 'src/shared/di/tokens';
+import { IHashingHelper } from 'src/shared/helpers/hashing/hashing.interface';
 import { CreateAccountDto } from './dtos/create-account.dto';
 import { IUserRepository } from '../../repositories/user-repository.interface';
 

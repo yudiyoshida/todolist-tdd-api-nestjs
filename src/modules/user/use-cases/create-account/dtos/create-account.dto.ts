@@ -1,4 +1,4 @@
-import { Trim } from '@shared/validators/trim';
+import { Trim } from 'src/shared/validators/trim';
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
 export class CreateAccountDto {

@@ -1,7 +1,7 @@
 import { validate } from 'class-validator';
 
 import { LoginDto } from './login.dto';
-import { validateDto } from '@shared/validators/validate-dto';
+import { validateDto } from 'src/shared/validators/validate-dto';
 
 describe('LoginDto', () => {
   const data: LoginDto = {

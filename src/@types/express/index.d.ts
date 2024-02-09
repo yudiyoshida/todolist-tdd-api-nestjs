@@ -1,4 +1,4 @@
-import { IPayload } from '@shared/interfaces/payload.interface';
+import { IPayload } from 'src/shared/interfaces/payload.interface';
 
 // to make the file a module and avoid the TypeScript error.
 export {};

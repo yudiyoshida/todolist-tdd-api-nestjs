@@ -1,8 +1,8 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiConflictResponse, ApiCreatedResponse, ApiInternalServerErrorResponse, ApiTags, OmitType } from '@nestjs/swagger';
 
-import { User } from '@modules/user/entities/user.entity';
-import { ClientError, ServerError } from '@shared/errors/error.entity';
+import { User } from 'src/modules/user/entities/user.entity';
+import { ClientError, ServerError } from 'src/shared/errors/error.entity';
 import { CreateAccountService } from './create-account.service';
 import { CreateAccountDto } from './dtos/create-account.dto';
 

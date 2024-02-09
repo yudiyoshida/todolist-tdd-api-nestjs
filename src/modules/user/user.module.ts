@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 
-import { TOKENS } from '@shared/di/tokens';
-import { BcryptAdapter } from '@shared/helpers/hashing/adapters/bcrypt';
+import { TOKENS } from 'src/shared/di/tokens';
+import { BcryptAdapter } from 'src/shared/helpers/hashing/adapters/bcrypt';
 import { UserInMemoryRepository } from './repositories/adapters/user-in-memory.repository';
 
 import { CreateAccountController } from './use-cases/create-account/create-account.controller';

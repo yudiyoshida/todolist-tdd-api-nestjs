@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConflictException } from '@nestjs/common';
 
-import { TOKENS } from '@shared/di/tokens';
-import { BcryptAdapter } from '@shared/helpers/hashing/adapters/bcrypt';
+import { TOKENS } from 'src/shared/di/tokens';
+import { BcryptAdapter } from 'src/shared/helpers/hashing/adapters/bcrypt';
 import { CreateAccountService } from './create-account.service';
 import { CreateAccountDto } from './dtos/create-account.dto';
 import { UserInMemoryRepository } from '../../repositories/adapters/user-in-memory.repository';

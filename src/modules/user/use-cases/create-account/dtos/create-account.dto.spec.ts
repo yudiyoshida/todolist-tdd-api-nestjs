@@ -1,7 +1,7 @@
 import { validate } from 'class-validator';
 
 import { CreateAccountDto } from './create-account.dto';
-import { validateDto } from '@shared/validators/validate-dto';
+import { validateDto } from 'src/shared/validators/validate-dto';
 
 describe('CreateAccountDto', () => {
   const data: CreateAccountDto = {

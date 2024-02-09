@@ -1,4 +1,4 @@
-import { Trim } from '@shared/validators/trim';
+import { Trim } from 'src/shared/validators/trim';
 import { IsNotEmpty, IsString } from 'class-validator';
 
 export class LoginDto {

@@ -4,8 +4,8 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { isJWT } from 'class-validator';
 
-import { TOKENS } from '@shared/di/tokens';
-import { BcryptAdapter } from '@shared/helpers/hashing/adapters/bcrypt';
+import { TOKENS } from 'src/shared/di/tokens';
+import { BcryptAdapter } from 'src/shared/helpers/hashing/adapters/bcrypt';
 import { UserInMemoryRepository } from '../../repositories/adapters/user-in-memory.repository';
 import { CreateAccountService } from '../create-account/create-account.service';
 import { CreateAccountDto } from '../create-account/dtos/create-account.dto';

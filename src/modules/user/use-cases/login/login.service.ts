@@ -1,10 +1,11 @@
-import { IUserRepository } from '@modules/user/repositories/user-repository.interface';
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
-import { LoginDto } from './dtos/login.dto';
-import { TOKENS } from '@shared/di/tokens';
-import { IHashingHelper } from '@shared/helpers/hashing/hashing.interface';
 import { JwtService } from '@nestjs/jwt';
+
+import { TOKENS } from '@shared/di/tokens';
 import { IPayload } from '@shared/interfaces/payload.interface';
+import { IHashingHelper } from '@shared/helpers/hashing/hashing.interface';
+import { LoginDto } from './dtos/login.dto';
+import { IUserRepository } from '../../repositories/user-repository.interface';
 
 @Injectable()
 export class LoginService {

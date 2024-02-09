@@ -1,8 +1,9 @@
 import { ConflictException, Inject, Injectable } from '@nestjs/common';
-import { CreateAccountDto } from './dtos/create-account.dto';
-import { IUserRepository } from '../../repositories/user-repository.interface';
+
 import { TOKENS } from '@shared/di/tokens';
 import { IHashingHelper } from '@shared/helpers/hashing/hashing.interface';
+import { CreateAccountDto } from './dtos/create-account.dto';
+import { IUserRepository } from '../../repositories/user-repository.interface';
 
 @Injectable()
 export class CreateAccountService {

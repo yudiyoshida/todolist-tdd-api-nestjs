@@ -1,5 +1,3 @@
-import { validate } from 'class-validator';
-
 import { LoginDto } from './login.dto';
 import { validateDto } from 'src/shared/validators/validate-dto';
 
@@ -93,9 +91,9 @@ describe('LoginDto', () => {
       dto.email = data.email;
       dto.password = data.password;
 
-      const result = await validate(dto);
+      const result = await validateDto(dto, 'email');
 
-      expect(result).toHaveLength(0);
+      expect(result).toBeUndefined();
     });
   });
 });

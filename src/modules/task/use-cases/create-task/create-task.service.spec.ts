@@ -41,6 +41,20 @@ describe('CreateTaskService', () => {
   it('should create a new task even not providing a description', async() => {
     const data: CreateTaskDto = {
       title: 'Task 01',
+    };
+
+    const result = await service.execute(data, userId);
+
+    expect(result).toHaveProperty('id');
+    expect(result).toHaveProperty('title', data.title);
+    expect(result).toHaveProperty('description', null);
+    expect(result).toHaveProperty('isDone', false);
+    expect(result).toHaveProperty('userId', userId);
+  });
+
+  it('should create a new task when providing null to description', async() => {
+    const data: CreateTaskDto = {
+      title: 'Task 01',
       description: null,
     };
 

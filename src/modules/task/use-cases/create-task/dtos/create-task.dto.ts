@@ -16,5 +16,5 @@ export class CreateTaskDto {
     message: 'Descrição deve ser do tipo string.',
   })
   @Trim()
-  description: string | null;
+  description?: string;
 }

@@ -4,11 +4,18 @@ import { ConfigModule } from '@nestjs/config';
 import * as request from 'supertest';
 
 import { UserModule } from 'src/modules/user/user.module';
+import { CreateAccountDto } from 'src/modules/user/use-cases/create-account/dtos/create-account.dto';
 
-describe('CreateAccountController (e2e)', () => {
+describe('Create new account (e2e)', () => {
   let app: INestApplication;
 
   const endpoint = '/users/create-account';
+
+  const data: CreateAccountDto = {
+    name: 'Jhon Doe',
+    email: 'jhondoe@email.com',
+    password: '123456789',
+  };
 
   beforeEach(async() => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -25,12 +32,37 @@ describe('CreateAccountController (e2e)', () => {
   });
 
   describe('POST /users/create-account', () => {
+    it('should create a new account and return 201 status', async() => {
+      const result = await request(app.getHttpServer())
+        .post(endpoint)
+        .send(data);
+
+      expect(result.statusCode).toBe(201);
+      expect(result.body).toHaveProperty('id');
+      expect(result.body).toHaveProperty('name', data.name);
+      expect(result.body).toHaveProperty('email', data.email);
+      expect(result.body).not.toHaveProperty('password');
+    });
+
     it('should return a 400 error when not providing request body', async() => {
       const result = await request(app.getHttpServer())
         .post(endpoint)
         .send({});
 
       expect(result.statusCode).toBe(400);
+    });
+
+    it('should return a 409 error when providing a non unique email', async() => {
+      await request(app.getHttpServer())
+        .post(endpoint)
+        .send(data);
+
+      const result = await request(app.getHttpServer())
+        .post(endpoint)
+        .send(data);
+
+      expect(result.statusCode).toBe(409);
+      expect(result.body).toHaveProperty('message', 'Email já está sendo utilizado.');
     });
   });
 });

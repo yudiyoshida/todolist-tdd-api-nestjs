@@ -2,9 +2,9 @@ import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import { TOKENS } from 'src/shared/di/tokens';
-import { IPayload } from 'src/shared/interfaces/payload.interface';
-import { IHashingHelper } from 'src/shared/helpers/hashing/hashing.interface';
+import { PayloadDto } from 'src/shared/types/payload.type';
 import { LoginDto } from './dtos/login.dto';
+import { IHashingHelper } from 'src/shared/helpers/hashing/hashing.interface';
 import { IUserRepository } from '../../repositories/user-repository.interface';
 
 @Injectable()
@@ -26,7 +26,7 @@ export class LoginService {
       throw new BadRequestException('Credenciais incorretas.');
     }
 
-    const payload: IPayload = { sub: account.id };
+    const payload: PayloadDto = { sub: account.id };
     const accessToken = this.jwtService.sign(payload);
 
     return { accessToken };

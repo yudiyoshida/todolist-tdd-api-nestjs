@@ -7,7 +7,8 @@ import { TaskInMemoryRepository } from '../../repositories/adapters/task-in-memo
 
 describe('CreateTaskService', () => {
   let service: CreateTaskService;
-  const userId = 'USER123';
+
+  const userId = 'USERID123';
 
   beforeEach(async() => {
     const module: TestingModule = await Test.createTestingModule({

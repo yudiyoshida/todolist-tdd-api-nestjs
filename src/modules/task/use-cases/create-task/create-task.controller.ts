@@ -7,8 +7,8 @@ import { CreateTaskService } from './create-task.service';
 export class CreateTaskController {
   constructor(private createTaskService: CreateTaskService) {}
 
-  @Post('')
-  public handle(@Body() data: CreateTaskDto) {
-    return this.createTaskService.execute(data, '123');
+  @Post('/')
+  public handle(@Body() data: CreateTaskDto, userId: string) {
+    return this.createTaskService.execute(data, userId);
   }
 }

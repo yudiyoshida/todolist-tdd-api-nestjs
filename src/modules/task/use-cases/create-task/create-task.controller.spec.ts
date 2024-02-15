@@ -41,7 +41,7 @@ describe('CreateTaskController', () => {
     expect(serviceMock.execute).toHaveBeenCalledTimes(1);
   });
 
-  it('should call the service with the correct arguments', async() => {
+  it('should call the service with correct arguments', async() => {
     await controller.handle(data, userId);
 
     expect(serviceMock.execute).toHaveBeenCalledWith(data, userId);

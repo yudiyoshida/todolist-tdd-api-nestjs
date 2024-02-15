@@ -6,6 +6,7 @@ import { CreateAccountDto } from './dtos/create-account.dto';
 
 describe('CreateAccountController', () => {
   let controller: CreateAccountController;
+  let serviceMock: CreateAccountService;
 
   const data: CreateAccountDto = {
     name: 'Jhon Doe',
@@ -13,25 +14,38 @@ describe('CreateAccountController', () => {
     password: '123456789',
   };
 
-  const mockCreateAccountService = {
-    execute: jest.fn().mockResolvedValue({ ...data }),
-  };
-
   beforeEach(async() => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [CreateAccountController],
-      providers: [CreateAccountService],
-    })
-      .overrideProvider(CreateAccountService)
-      .useValue(mockCreateAccountService)
-      .compile();
+      controllers: [
+        CreateAccountController,
+      ],
+      providers: [
+        {
+          provide: CreateAccountService,
+          useFactory: () => ({
+            execute: jest.fn(() => {}),
+          }),
+        },
+      ],
+    }).compile();
 
     controller = module.get<CreateAccountController>(CreateAccountController);
+    serviceMock = module.get<CreateAccountService>(CreateAccountService);
   });
 
-  it('should return the exact result from service', async() => {
-    const result = await controller.handle(data);
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
 
-    expect(result).toStrictEqual(data);
+  it('should call the service only once', async() => {
+    await controller.handle(data);
+
+    expect(serviceMock.execute).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call the service with correct arguments', async() => {
+    await controller.handle(data);
+
+    expect(serviceMock.execute).toHaveBeenCalledWith(data);
   });
 });

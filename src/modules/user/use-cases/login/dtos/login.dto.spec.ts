@@ -1,5 +1,5 @@
 import { LoginDto } from './login.dto';
-import { validateDto } from 'src/shared/validators/validate-dto';
+import { getErrorsFromField, validateDto } from 'src/shared/validators/validate-dto';
 
 describe('LoginDto', () => {
   const data: LoginDto = {
@@ -11,36 +11,40 @@ describe('LoginDto', () => {
     it('should throw an error when not providing any', async() => {
       const dto = new LoginDto();
 
-      const result = await validateDto(dto, 'email');
+      const result = validateDto(dto);
+      const errors = getErrorsFromField<LoginDto>(result, 'email');
 
-      expect(result.constraints).toHaveProperty('isNotEmpty', 'Email é um campo obrigatório.');
+      expect(errors.constraints).toHaveProperty('isNotEmpty', 'Email é um campo obrigatório.');
     });
 
     it('should throw an error when providing null as email', async() => {
       const dto = new LoginDto();
       dto.email = null;
 
-      const result = await validateDto(dto, 'email');
+      const result = validateDto(dto);
+      const errors = getErrorsFromField<LoginDto>(result, 'email');
 
-      expect(result.constraints).toHaveProperty('isNotEmpty', 'Email é um campo obrigatório.');
+      expect(errors.constraints).toHaveProperty('isNotEmpty', 'Email é um campo obrigatório.');
     });
 
     it('should throw an error about invalid type when providing a numeric email', async() => {
       const dto = new LoginDto();
       dto.email = (123 as unknown as string);
 
-      const result = await validateDto(dto, 'email');
+      const result = validateDto(dto);
+      const errors = getErrorsFromField<LoginDto>(result, 'email');
 
-      expect(result.constraints).toHaveProperty('isString', 'Email deve ser do tipo string.');
+      expect(errors.constraints).toHaveProperty('isString', 'Email deve ser do tipo string.');
     });
 
     it('should throw an error about invalid type when providing a boolean email', async() => {
       const dto = new LoginDto();
       dto.email = (true as unknown as string);
 
-      const result = await validateDto(dto, 'email');
+      const result = validateDto(dto);
+      const errors = getErrorsFromField<LoginDto>(result, 'email');
 
-      expect(result.constraints).toHaveProperty('isString', 'Email deve ser do tipo string.');
+      expect(errors.constraints).toHaveProperty('isString', 'Email deve ser do tipo string.');
     });
   });
 
@@ -49,9 +53,10 @@ describe('LoginDto', () => {
       const dto = new LoginDto();
       dto.email = data.email;
 
-      const result = await validateDto(dto, 'password');
+      const result = validateDto(dto);
+      const errors = getErrorsFromField<LoginDto>(result, 'password');
 
-      expect(result.constraints).toHaveProperty('isNotEmpty', 'Senha é um campo obrigatório.');
+      expect(errors.constraints).toHaveProperty('isNotEmpty', 'Senha é um campo obrigatório.');
     });
 
     it('should throw an error when providing null as password', async() => {
@@ -59,9 +64,10 @@ describe('LoginDto', () => {
       dto.email = data.email;
       dto.password = null;
 
-      const result = await validateDto(dto, 'password');
+      const result = validateDto(dto);
+      const errors = getErrorsFromField<LoginDto>(result, 'password');
 
-      expect(result.constraints).toHaveProperty('isNotEmpty', 'Senha é um campo obrigatório.');
+      expect(errors.constraints).toHaveProperty('isNotEmpty', 'Senha é um campo obrigatório.');
     });
 
     it('should throw an error about invalid type when providing a numeric password', async() => {
@@ -69,9 +75,10 @@ describe('LoginDto', () => {
       dto.email = data.email;
       dto.password = (123 as unknown as string);
 
-      const result = await validateDto(dto, 'password');
+      const result = validateDto(dto);
+      const errors = getErrorsFromField<LoginDto>(result, 'password');
 
-      expect(result.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
+      expect(errors.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
     });
 
     it('should throw an error about invalid type when providing a boolean password', async() => {
@@ -79,9 +86,10 @@ describe('LoginDto', () => {
       dto.email = data.email;
       dto.password = (true as unknown as string);
 
-      const result = await validateDto(dto, 'password');
+      const result = validateDto(dto);
+      const errors = getErrorsFromField<LoginDto>(result, 'password');
 
-      expect(result.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
+      expect(errors.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
     });
   });
 
@@ -91,9 +99,9 @@ describe('LoginDto', () => {
       dto.email = data.email;
       dto.password = data.password;
 
-      const result = await validateDto(dto, 'email');
+      const result = validateDto(dto);
 
-      expect(result).toBeUndefined();
+      expect(result).toHaveLength(0);
     });
   });
 });

@@ -1,7 +1,11 @@
-import { validate } from 'class-validator';
+import { ValidationError } from '@nestjs/common';
 
-export async function validateDto(dto: any, field: string) {
-  const errors = await validate(dto);
+import { validateSync } from 'class-validator';
 
+export function validateDto(dto: any): ValidationError[] {
+  return validateSync(dto);
+}
+
+export function getErrorsFromField<T>(errors: ValidationError[], field: keyof T): ValidationError {
   return errors.find(error => error.property === field);
 }

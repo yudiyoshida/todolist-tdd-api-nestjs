@@ -13,8 +13,8 @@ export class CreateAccountService {
   ) {}
 
   public async execute(data: CreateAccountDto) {
-    const isEmailNotUnique = await this.accountRepository.findByEmail(data.email);
-    if (isEmailNotUnique) {
+    const emailIsNotUnique = await this.accountRepository.findByEmail(data.email);
+    if (emailIsNotUnique) {
       throw new ConflictException('Email já está sendo utilizado.');
     }
 

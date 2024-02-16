@@ -3,17 +3,17 @@ import { ConfigModule } from '@nestjs/config';
 
 import { AccountModule } from './modules/account/account.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { TaskModule } from './modules/task/task.module';
 import { JwtAuthModule } from './modules/auth/jwt.module';
+import { TaskModule } from './modules/task/task.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       expandVariables: true,
     }),
-    JwtAuthModule,
     AccountModule,
     AuthModule,
+    JwtAuthModule,
     TaskModule,
   ],
   controllers: [],

@@ -7,8 +7,12 @@ import { BcryptAdapter } from 'src/shared/helpers/hashing/adapters/bcrypt';
 import { CreateAccountController } from './use-cases/create-account/create-account.controller';
 import { CreateAccountService } from './use-cases/create-account/create-account.service';
 
+import { GetAccountByIdController } from './use-cases/get-account-by-id/get-account-by-id.controller';
+import { GetAccountByIdService } from './use-cases/get-account-by-id/get-account-by-id.service';
+
 const providers: Provider[] = [
   CreateAccountService,
+  GetAccountByIdService,
   {
     provide: TOKENS.IAccountRepository,
     useClass: AccountInMemoryRepository,
@@ -22,6 +26,7 @@ const providers: Provider[] = [
 @Module({
   controllers: [
     CreateAccountController,
+    GetAccountByIdController,
   ],
   providers: [...providers],
   exports: [...providers],

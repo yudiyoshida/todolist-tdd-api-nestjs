@@ -9,6 +9,10 @@ import { IAccountRepository } from '../account-repository.interface';
 export class AccountInMemoryRepository implements IAccountRepository {
   private readonly _accounts: Account[] = [];
 
+  public async findById(id: string): Promise<Account | null> {
+    return this._accounts.find(account => account.id === id);
+  }
+
   public async findByEmail(email: string): Promise<Account | null> {
     return this._accounts.find(account => account.email === email);
   }

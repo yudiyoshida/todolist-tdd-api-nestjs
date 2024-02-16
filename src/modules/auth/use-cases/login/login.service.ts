@@ -27,7 +27,7 @@ export class LoginService {
     }
 
     const payload: PayloadDto = { sub: account.id };
-    const accessToken = this.jwtService.sign(payload);
+    const accessToken = this.jwtService.sign(payload, { secret: process.env.JWT_SECRET });
 
     return { accessToken };
   }

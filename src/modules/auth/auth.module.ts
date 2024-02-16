@@ -1,17 +1,13 @@
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
+
+import { AccountModule } from '../account/account.module';
+import { AuthenticationGuard } from './guards/authentication/authentication.guard';
 
 import { LoginController } from './use-cases/login/login.controller';
 import { LoginService } from './use-cases/login/login.service';
-import { AccountModule } from '../account/account.module';
 
 @Module({
   imports: [
-    JwtModule.registerAsync({
-      useFactory: () => ({
-        secret: process.env.JWT_SECRET,
-      }),
-    }),
     AccountModule,
   ],
   controllers: [
@@ -19,6 +15,7 @@ import { AccountModule } from '../account/account.module';
   ],
   providers: [
     LoginService,
+    AuthenticationGuard,
   ],
 })
 export class AuthModule {}

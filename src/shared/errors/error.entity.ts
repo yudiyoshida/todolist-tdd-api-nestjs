@@ -6,5 +6,6 @@ export class ClientError {
 
 export class ServerError {
   message: string;
+  error: string;
   statusCode: number;
 }

@@ -9,7 +9,7 @@ import { CreateAccountDto } from 'src/modules/account/use-cases/create-account/d
 describe('Create new account (e2e)', () => {
   let app: INestApplication;
 
-  const endpoint = '/accounts/create-account';
+  const endpoint = '/accounts';
 
   const data: CreateAccountDto = {
     name: 'Jhon Doe',

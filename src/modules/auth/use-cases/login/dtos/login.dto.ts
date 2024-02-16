@@ -20,3 +20,7 @@ export class LoginDto {
   @Trim()
   password: string;
 }
+
+export class LoginResponseDto {
+  accessToken: string;
+}

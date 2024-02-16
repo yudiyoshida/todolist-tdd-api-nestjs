@@ -5,7 +5,7 @@ import { TOKENS } from 'src/shared/di/tokens';
 import { BcryptAdapter } from 'src/shared/helpers/hashing/adapters/bcrypt';
 import { CreateAccountService } from './create-account.service';
 import { CreateAccountDto } from './dtos/create-account.dto';
-import { UserInMemoryRepository } from '../../repositories/adapters/user-in-memory.repository';
+import { AccountInMemoryRepository } from '../../repositories/adapters/account-in-memory.repository';
 
 describe('CreateAccountService', () => {
   let service: CreateAccountService;
@@ -21,8 +21,8 @@ describe('CreateAccountService', () => {
       providers: [
         CreateAccountService,
         {
-          provide: TOKENS.IUserRepository,
-          useClass: UserInMemoryRepository,
+          provide: TOKENS.IAccountRepository,
+          useClass: AccountInMemoryRepository,
         },
         {
           provide: TOKENS.IHashingHelper,

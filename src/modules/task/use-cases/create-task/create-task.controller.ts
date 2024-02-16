@@ -19,7 +19,7 @@ export class CreateTaskController {
   @ApiBadRequestResponse({ type: ClientError })
   @ApiInternalServerErrorResponse({ type: ServerError })
   @Post('/')
-  public handle(@Body() data: CreateTaskDto, userId: string) {
-    return this.createTaskService.execute(data, userId);
+  public handle(@Body() data: CreateTaskDto, accountId: string) {
+    return this.createTaskService.execute(data, accountId);
   }
 }

@@ -3,5 +3,5 @@ export class Task {
   title: string;
   description: string | null;
   isDone: boolean;
-  userId: string;
+  accountId: string;
 }

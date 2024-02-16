@@ -12,7 +12,7 @@ describe('CreateTaskController', () => {
     title: 'Task 01',
     description: 'Descrição da task 01',
   };
-  const userId = 'USERID123';
+  const accountId = 'accountID123';
 
   beforeEach(async() => {
     const module: TestingModule = await Test.createTestingModule({
@@ -36,14 +36,14 @@ describe('CreateTaskController', () => {
   });
 
   it('should call the service only once', async() => {
-    await controller.handle(data, userId);
+    await controller.handle(data, accountId);
 
     expect(serviceMock.execute).toHaveBeenCalledTimes(1);
   });
 
   it('should call the service with correct arguments', async() => {
-    await controller.handle(data, userId);
+    await controller.handle(data, accountId);
 
-    expect(serviceMock.execute).toHaveBeenCalledWith(data, userId);
+    expect(serviceMock.execute).toHaveBeenCalledWith(data, accountId);
   });
 });

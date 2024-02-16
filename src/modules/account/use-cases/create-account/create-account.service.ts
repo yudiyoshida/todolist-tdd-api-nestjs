@@ -3,17 +3,17 @@ import { ConflictException, Inject, Injectable } from '@nestjs/common';
 import { TOKENS } from 'src/shared/di/tokens';
 import { IHashingHelper } from 'src/shared/helpers/hashing/hashing.interface';
 import { CreateAccountDto } from './dtos/create-account.dto';
-import { IUserRepository } from '../../repositories/user-repository.interface';
+import { IAccountRepository } from '../../repositories/account-repository.interface';
 
 @Injectable()
 export class CreateAccountService {
   constructor(
-    @Inject(TOKENS.IUserRepository) private userRepository: IUserRepository,
+    @Inject(TOKENS.IAccountRepository) private accountRepository: IAccountRepository,
     @Inject(TOKENS.IHashingHelper) private hashingHelper: IHashingHelper
   ) {}
 
   public async execute(data: CreateAccountDto) {
-    const isEmailNotUnique = await this.userRepository.findByEmail(data.email);
+    const isEmailNotUnique = await this.accountRepository.findByEmail(data.email);
     if (isEmailNotUnique) {
       throw new ConflictException('Email já está sendo utilizado.');
     }
@@ -22,7 +22,7 @@ export class CreateAccountService {
     data.password = this.hashingHelper.hash(data.password);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...account } = await this.userRepository.save(data);
+    const { password, ...account } = await this.accountRepository.save(data);
 
     return account;
   }

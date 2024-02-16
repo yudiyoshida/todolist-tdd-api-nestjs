@@ -8,13 +8,13 @@ import { CreateTaskDto } from '../../use-cases/create-task/dtos/create-task.dto'
 export class TaskInMemoryRepository implements ITaskRepository {
   private tasks: Task[] = [];
 
-  public async save(data: CreateTaskDto, userId: string): Promise<Task> {
+  public async save(data: CreateTaskDto, accountId: string): Promise<Task> {
     const newTask: Task = {
       id: crypto.randomUUID(),
       title: data.title,
       description: data.description ?? null,
       isDone: false,
-      userId,
+      accountId,
     };
 
     this.tasks.push(newTask);

@@ -8,7 +8,7 @@ import { TaskInMemoryRepository } from '../../repositories/adapters/task-in-memo
 describe('CreateTaskService', () => {
   let service: CreateTaskService;
 
-  const userId = 'USERID123';
+  const accountId = 'accountID123';
 
   beforeEach(async() => {
     const module: TestingModule = await Test.createTestingModule({
@@ -30,13 +30,13 @@ describe('CreateTaskService', () => {
       description: 'Descrição da task 01',
     };
 
-    const result = await service.execute(data, userId);
+    const result = await service.execute(data, accountId);
 
     expect(result).toHaveProperty('id');
     expect(result).toHaveProperty('title', data.title);
     expect(result).toHaveProperty('description', data.description);
     expect(result).toHaveProperty('isDone', false);
-    expect(result).toHaveProperty('userId', userId);
+    expect(result).toHaveProperty('accountId', accountId);
   });
 
   it('should create a new task even not providing a description', async() => {
@@ -44,13 +44,13 @@ describe('CreateTaskService', () => {
       title: 'Task 01',
     };
 
-    const result = await service.execute(data, userId);
+    const result = await service.execute(data, accountId);
 
     expect(result).toHaveProperty('id');
     expect(result).toHaveProperty('title', data.title);
     expect(result).toHaveProperty('description', null);
     expect(result).toHaveProperty('isDone', false);
-    expect(result).toHaveProperty('userId', userId);
+    expect(result).toHaveProperty('accountId', accountId);
   });
 
   it('should create a new task when providing null to description', async() => {
@@ -59,12 +59,12 @@ describe('CreateTaskService', () => {
       description: null,
     };
 
-    const result = await service.execute(data, userId);
+    const result = await service.execute(data, accountId);
 
     expect(result).toHaveProperty('id');
     expect(result).toHaveProperty('title', data.title);
     expect(result).toHaveProperty('description', null);
     expect(result).toHaveProperty('isDone', false);
-    expect(result).toHaveProperty('userId', userId);
+    expect(result).toHaveProperty('accountId', accountId);
   });
 });

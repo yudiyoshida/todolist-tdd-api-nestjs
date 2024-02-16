@@ -1,5 +1,5 @@
 export enum TOKENS {
-  'IUserRepository' = 'IUserRepository',
+  'IAccountRepository' = 'IAccountRepository',
   'IHashingHelper' = 'IHashingHelper',
   'ITaskRepository' = 'ITaskRepository',
 }

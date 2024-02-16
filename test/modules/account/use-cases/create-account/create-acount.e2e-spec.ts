@@ -3,13 +3,13 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as request from 'supertest';
 
-import { UserModule } from 'src/modules/user/user.module';
-import { CreateAccountDto } from 'src/modules/user/use-cases/create-account/dtos/create-account.dto';
+import { AccountModule } from 'src/modules/account/account.module';
+import { CreateAccountDto } from 'src/modules/account/use-cases/create-account/dtos/create-account.dto';
 
 describe('Create new account (e2e)', () => {
   let app: INestApplication;
 
-  const endpoint = '/users/create-account';
+  const endpoint = '/accounts/create-account';
 
   const data: CreateAccountDto = {
     name: 'Jhon Doe',
@@ -21,7 +21,7 @@ describe('Create new account (e2e)', () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
         ConfigModule.forRoot(),
-        UserModule,
+        AccountModule,
       ],
     }).compile();
 
@@ -31,7 +31,7 @@ describe('Create new account (e2e)', () => {
     await app.init();
   });
 
-  describe('POST /users/create-account', () => {
+  describe('POST /accounts/create-account', () => {
     it('should create a new account and return 201 status', async() => {
       const result = await request(app.getHttpServer())
         .post(endpoint)

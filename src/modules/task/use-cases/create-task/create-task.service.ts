@@ -10,7 +10,7 @@ export class CreateTaskService {
     @Inject(TOKENS.ITaskRepository) private taskRepository: ITaskRepository
   ) {}
 
-  public async execute(data: CreateTaskDto, userId: string) {
-    return this.taskRepository.save(data, userId);
+  public async execute(data: CreateTaskDto, accountId: string) {
+    return this.taskRepository.save(data, accountId);
   }
 }

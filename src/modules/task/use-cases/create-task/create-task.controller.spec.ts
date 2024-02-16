@@ -3,6 +3,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { CreateTaskController } from './create-task.controller';
 import { CreateTaskService } from './create-task.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
+import { JwtAuthModule } from 'src/modules/auth/jwt.module';
+import { PayloadDto } from 'src/shared/types/payload.type';
 
 describe('CreateTaskController', () => {
   let controller: CreateTaskController;
@@ -12,10 +14,13 @@ describe('CreateTaskController', () => {
     title: 'Task 01',
     description: 'Descrição da task 01',
   };
-  const accountId = 'accountID123';
+  const account: PayloadDto = {
+    sub: 'ID',
+  };
 
   beforeEach(async() => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [JwtAuthModule],
       controllers: [CreateTaskController],
       providers: [
         {
@@ -36,14 +41,14 @@ describe('CreateTaskController', () => {
   });
 
   it('should call the service only once', async() => {
-    await controller.handle(data, accountId);
+    await controller.handle(data, account);
 
     expect(serviceMock.execute).toHaveBeenCalledTimes(1);
   });
 
   it('should call the service with correct arguments', async() => {
-    await controller.handle(data, accountId);
+    await controller.handle(data, account);
 
-    expect(serviceMock.execute).toHaveBeenCalledWith(data, accountId);
+    expect(serviceMock.execute).toHaveBeenCalledWith(data, account.sub);
   });
 });

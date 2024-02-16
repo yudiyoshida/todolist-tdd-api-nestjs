@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 
-import { ITaskRepository } from '../task-repository.interface';
 import { Task } from '../../entities/task.entity';
 import { CreateTaskDto } from '../../use-cases/create-task/dtos/create-task.dto';
+import { ITaskRepository } from '../task-repository.interface';
 
 @Injectable()
 export class TaskInMemoryRepository implements ITaskRepository {
-  private tasks: Task[] = [];
+  public readonly _tasks: Task[] = [];
 
   public async save(data: CreateTaskDto, accountId: string): Promise<Task> {
     const newTask: Task = {
@@ -17,7 +17,7 @@ export class TaskInMemoryRepository implements ITaskRepository {
       accountId,
     };
 
-    this.tasks.push(newTask);
+    this._tasks.push(newTask);
 
     return newTask;
   }

@@ -5,8 +5,12 @@ import { TaskInMemoryRepository } from './repositories/adapters/task-in-memory.r
 
 import { CreateTaskController } from './use-cases/create-task/create-task.controller';
 import { CreateTaskService } from './use-cases/create-task/create-task.service';
+import { AccountModule } from '../account/account.module';
 
 @Module({
+  imports: [
+    AccountModule,
+  ],
   controllers: [
     CreateTaskController,
   ],

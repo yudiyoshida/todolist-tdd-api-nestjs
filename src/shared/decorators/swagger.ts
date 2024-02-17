@@ -36,30 +36,30 @@ export function Swagger(props: swaggerProps) {
     applyConflictResponse(props.applyConflict),
     applyUnsupportedMediaTypeResponse(props.applyUnsupportedMediaType),
 
-    ApiInternalServerErrorResponse({ type: ServerError }),
+    ApiInternalServerErrorResponse({ type: ServerError, description: 'Internal Server Error' }),
   );
 }
 
 function applyOkResponse(type?: any) {
-  return type ? ApiOkResponse({ type }) : () => {};
+  return type ? ApiOkResponse({ type, description: 'OK' }) : () => {};
 }
 
 function applyCreatedResponse(type?: any) {
-  return type ? ApiCreatedResponse({ type }) : () => {};
+  return type ? ApiCreatedResponse({ type, description: 'Created' }) : () => {};
 }
 
-function applyBadRequestResponse(apply?: any) {
-  return apply ? ApiBadRequestResponse({ type: ClientError }) : () => {};
+function applyBadRequestResponse(apply?: boolean) {
+  return apply ? ApiBadRequestResponse({ type: ClientError, description: 'Bad Request' }) : () => {};
 }
 
-function applyNotFoundResponse(apply?: any) {
-  return apply ? ApiNotFoundResponse({ type: ServerError }) : () => {};
+function applyNotFoundResponse(apply?: boolean) {
+  return apply ? ApiNotFoundResponse({ type: ServerError, description: 'Not Found' }) : () => {};
 }
 
-function applyConflictResponse(apply?: any) {
-  return apply ? ApiConflictResponse({ type: ServerError }) : () => {};
+function applyConflictResponse(apply?: boolean) {
+  return apply ? ApiConflictResponse({ type: ServerError, description: 'Conflict' }) : () => {};
 }
 
-function applyUnsupportedMediaTypeResponse(apply?: any) {
-  return apply ? ApiUnsupportedMediaTypeResponse({ type: ServerError }) : () => {};
+function applyUnsupportedMediaTypeResponse(apply?: boolean) {
+  return apply ? ApiUnsupportedMediaTypeResponse({ type: ServerError, description: 'Unsupported Media Type' }) : () => {};
 }

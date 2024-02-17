@@ -27,7 +27,6 @@ describe('LoginService', () => {
         AccountModule,
       ],
       providers: [
-        CreateAccountService,
         LoginService,
       ],
     }).compile();

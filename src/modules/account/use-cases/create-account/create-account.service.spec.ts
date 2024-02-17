@@ -41,6 +41,7 @@ describe('CreateAccountService', () => {
     expect(result).toHaveProperty('name', data.name);
     expect(result).toHaveProperty('email', data.email);
     expect(result).not.toHaveProperty('password');
+    expect(result).not.toHaveProperty('permissions');
   });
 
   it('return an error when providing an email that is being used', async() => {

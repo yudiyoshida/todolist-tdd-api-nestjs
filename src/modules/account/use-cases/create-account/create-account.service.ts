@@ -21,9 +21,6 @@ export class CreateAccountService {
     // hash password.
     data.password = this.hashingHelper.hash(data.password);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...account } = await this.accountRepository.save(data);
-
-    return account;
+    return this.accountRepository.save(data);
   }
 }

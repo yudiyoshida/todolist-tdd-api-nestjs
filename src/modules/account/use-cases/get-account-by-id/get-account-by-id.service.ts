@@ -15,8 +15,6 @@ export class GetAccountByIdService {
       throw new NotFoundException('Conta não encontrada na base de dados.');
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...data } = account;
-    return data;
+    return account;
   }
 }

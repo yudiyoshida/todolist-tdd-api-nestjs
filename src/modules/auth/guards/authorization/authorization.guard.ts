@@ -27,7 +27,7 @@ export class AuthorizationGuard implements CanActivate {
       const request = context.switchToHttp().getRequest<Request>();
       const account = await this.getAccountByIdService.execute(request.auth.sub);
 
-      const hasPermission = account.permissions.includes(permission);
+      const hasPermission = account.permissions.some(item => item.action === permission);
       if (!hasPermission) {
         throw new Error();
       }

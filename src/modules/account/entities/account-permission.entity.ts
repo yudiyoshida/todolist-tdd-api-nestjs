@@ -1,5 +1,7 @@
-export class AccountPermission {
-  id: string;
+export interface IAccountPermissionDto {
   action: string;
-  accountId: string;
+}
+
+export class AccountPermission implements IAccountPermissionDto {
+  action: string;
 }

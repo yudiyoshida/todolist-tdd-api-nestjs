@@ -4,6 +4,8 @@ import { TOKENS } from 'src/shared/di/tokens';
 import { IHashingHelper } from 'src/shared/helpers/hashing/hashing.interface';
 import { CreateAccountDto } from './dtos/create-account.dto';
 import { IAccountRepository } from '../../repositories/account-repository.interface';
+import { AccountPermission } from '../../entities/account-permission.entity';
+import { AccountPermissionsEnum } from 'src/modules/auth/enums/permissions.enum';
 
 @Injectable()
 export class CreateAccountService {
@@ -21,6 +23,17 @@ export class CreateAccountService {
     // hash password.
     data.password = this.hashingHelper.hash(data.password);
 
-    return this.accountRepository.save(data);
+    // define permissions.
+    const permissions = this.setPermissions();
+
+    return this.accountRepository.save(data, permissions);
+  }
+
+  private setPermissions() {
+    const permissions: AccountPermission[] = [];
+
+    permissions.push({ action: AccountPermissionsEnum.TASK_CREATE_ONE });
+
+    return permissions;
   }
 }

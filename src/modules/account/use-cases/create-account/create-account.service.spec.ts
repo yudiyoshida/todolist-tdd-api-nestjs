@@ -3,9 +3,10 @@ import { ConflictException } from '@nestjs/common';
 
 import { TOKENS } from 'src/shared/di/tokens';
 import { BcryptAdapter } from 'src/shared/helpers/hashing/adapters/bcrypt';
-import { CreateAccountService } from './create-account.service';
-import { CreateAccountDto } from './dtos/create-account.dto';
 import { AccountInMemoryRepository } from '../../repositories/adapters/account-in-memory.repository';
+
+import { CreateAccountDto } from './dtos/create-account.dto';
+import { CreateAccountService } from './create-account.service';
 
 describe('CreateAccountService', () => {
   let service: CreateAccountService;

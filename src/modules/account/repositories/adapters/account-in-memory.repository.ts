@@ -1,13 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import * as crypto from 'crypto';
 
-import { Account } from '../../entities/account.entity';
-import { CreateAccountDto } from '../../use-cases/create-account/dtos/create-account.dto';
 import { IAccountRepository } from '../account-repository.interface';
+
+import { IAccountDto } from '../../entities/account.entity';
+import { IAccountPermissionDto } from '../../entities/account-permission.entity';
+import { CreateAccountDto } from '../../use-cases/create-account/dtos/create-account.dto';
 
 @Injectable()
 export class AccountInMemoryRepository implements IAccountRepository {
-  private readonly _accounts: Account[] = [];
+  private readonly _accounts: IAccountDto[] = [];
 
   public async findById(id: string) {
     const account = this._accounts.find(account => account.id === id);
@@ -15,7 +17,6 @@ export class AccountInMemoryRepository implements IAccountRepository {
     if (account) {
       delete account.password;
     }
-
     return account;
   }
 
@@ -23,13 +24,13 @@ export class AccountInMemoryRepository implements IAccountRepository {
     return this._accounts.find(account => account.email === email);
   }
 
-  public async save(data: CreateAccountDto) {
-    const newAccount = { id: crypto.randomUUID(), permissions: [], ...data };
+  public async save(data: CreateAccountDto, permissions: IAccountPermissionDto[]) {
+    const newAccount = { id: crypto.randomUUID(), ...data };
 
-    this._accounts.push(newAccount);
+    this._accounts.push({ ...newAccount, permissions });
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, permissions, ...body } = newAccount;
+    const { password, ...body } = newAccount;
 
     return body;
   }

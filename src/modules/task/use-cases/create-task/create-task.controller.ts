@@ -4,7 +4,7 @@ import { Auth } from 'src/modules/auth/decorators/auth.decorator';
 import { AccountPermissionsEnum } from 'src/modules/auth/enums/permissions.enum';
 import { CreateTaskDto } from './dtos/create-task.dto';
 import { CreateTaskService } from './create-task.service';
-import { PayloadDto } from 'src/shared/types/payload.type';
+import { PayloadDto } from '../../../auth/types/payload.type';
 import { RequiredPermission } from 'src/modules/auth/decorators/required-permission.decorator';
 import { Swagger } from 'src/shared/decorators/swagger';
 import { Task } from '../../entities/task.entity';

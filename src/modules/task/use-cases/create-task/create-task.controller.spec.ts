@@ -4,7 +4,7 @@ import { CreateTaskController } from './create-task.controller';
 import { CreateTaskService } from './create-task.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
 import { JwtAuthModule } from 'src/modules/auth/jwt.module';
-import { PayloadDto } from 'src/shared/types/payload.type';
+import { PayloadDto } from '../../../auth/types/payload.type';
 import { AccountModule } from 'src/modules/account/account.module';
 
 describe('CreateTaskController', () => {

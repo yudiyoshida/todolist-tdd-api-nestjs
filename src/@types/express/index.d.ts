@@ -1,4 +1,4 @@
-import { PayloadDto } from 'src/shared/types/payload.type';
+import { PayloadDto } from 'src/modules/auth/types/payload.type';
 
 // to make the file a module and avoid the TypeScript error.
 export {};

@@ -5,7 +5,7 @@ import { TOKENS } from 'src/shared/di/tokens';
 import { IAccountRepository } from 'src/modules/account/repositories/account-repository.interface';
 import { LoginDto } from './dtos/login.dto';
 import { IHashingHelper } from 'src/shared/helpers/hashing/hashing.interface';
-import { PayloadDto } from 'src/shared/types/payload.type';
+import { PayloadDto } from '../../types/payload.type';
 
 @Injectable()
 export class LoginService {

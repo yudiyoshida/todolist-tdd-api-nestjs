@@ -9,7 +9,7 @@ import { IAccountRepository } from '../account-repository.interface';
 export class AccountInMemoryRepository implements IAccountRepository {
   private readonly _accounts: Account[] = [];
 
-  public async findById(id: string): Promise<Omit<Account, 'password'>> {
+  public async findById(id: string) {
     const account = this._accounts.find(account => account.id === id);
 
     if (account) {
@@ -19,11 +19,11 @@ export class AccountInMemoryRepository implements IAccountRepository {
     return account;
   }
 
-  public async findByEmail(email: string): Promise<Account | null> {
+  public async findByEmail(email: string) {
     return this._accounts.find(account => account.email === email);
   }
 
-  public async save(data: CreateAccountDto): Promise<Omit<Account, 'password' | 'permissions'>> {
+  public async save(data: CreateAccountDto) {
     const newAccount = { id: crypto.randomUUID(), permissions: [], ...data };
 
     this._accounts.push(newAccount);

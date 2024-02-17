@@ -1,9 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NotFoundException } from '@nestjs/common';
 
-import { AccountModule } from '../../account.module';
+import { TOKENS } from 'src/shared/di/tokens';
+import { BcryptAdapter } from 'src/shared/helpers/hashing/adapters/bcrypt';
 import { GetAccountByIdService } from './get-account-by-id.service';
 import { CreateAccountService } from '../create-account/create-account.service';
+import { AccountInMemoryRepository } from '../../repositories/adapters/account-in-memory.repository';
 
 describe('GetAccountByIdService', () => {
   let service: GetAccountByIdService;
@@ -11,7 +13,18 @@ describe('GetAccountByIdService', () => {
 
   beforeEach(async() => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [AccountModule],
+      providers: [
+        GetAccountByIdService,
+        CreateAccountService,
+        {
+          provide: TOKENS.IAccountRepository,
+          useClass: AccountInMemoryRepository,
+        },
+        {
+          provide: TOKENS.IHashingHelper,
+          useClass: BcryptAdapter,
+        },
+      ],
     }).compile();
 
     service = module.get<GetAccountByIdService>(GetAccountByIdService);

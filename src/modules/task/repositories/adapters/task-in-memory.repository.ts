@@ -8,7 +8,7 @@ import { ITaskRepository } from '../task-repository.interface';
 export class TaskInMemoryRepository implements ITaskRepository {
   public readonly _tasks: Task[] = [];
 
-  public async save(data: CreateTaskDto, accountId: string): Promise<Task> {
+  public async save(data: CreateTaskDto, accountId: string) {
     const newTask: Task = {
       id: crypto.randomUUID(),
       title: data.title,

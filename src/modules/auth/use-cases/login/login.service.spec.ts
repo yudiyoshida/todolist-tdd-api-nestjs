@@ -4,11 +4,13 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { isJWT } from 'class-validator';
 
-import { AccountModule } from 'src/modules/account/account.module';
-import { LoginDto } from './dtos/login.dto';
+import { TOKENS } from 'src/shared/di/tokens';
+import { BcryptAdapter } from 'src/shared/helpers/hashing/adapters/bcrypt';
 import { LoginService } from './login.service';
-import { CreateAccountDto } from '../../../account/use-cases/create-account/dtos/create-account.dto';
 import { CreateAccountService } from '../../../account/use-cases/create-account/create-account.service';
+import { LoginDto } from './dtos/login.dto';
+import { CreateAccountDto } from '../../../account/use-cases/create-account/dtos/create-account.dto';
+import { AccountInMemoryRepository } from 'src/modules/account/repositories/adapters/account-in-memory.repository';
 
 describe('LoginService', () => {
   let service: LoginService;
@@ -24,10 +26,18 @@ describe('LoginService', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         JwtModule.register({ secret: 'secret-for-tests-only' }),
-        AccountModule,
       ],
       providers: [
         LoginService,
+        CreateAccountService,
+        {
+          provide: TOKENS.IAccountRepository,
+          useClass: AccountInMemoryRepository,
+        },
+        {
+          provide: TOKENS.IHashingHelper,
+          useClass: BcryptAdapter,
+        },
       ],
     }).compile();
 

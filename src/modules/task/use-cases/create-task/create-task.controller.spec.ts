@@ -5,7 +5,7 @@ import { CreateTaskService } from './create-task.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
 import { JwtAuthModule } from 'src/modules/auth/jwt.module';
 import { PayloadDto } from '../../../auth/types/payload.type';
-import { AccountModule } from 'src/modules/account/account.module';
+import { GetAccountByIdService } from 'src/modules/account/use-cases/get-account-by-id/get-account-by-id.service';
 
 describe('CreateTaskController', () => {
   let controller: CreateTaskController;
@@ -22,7 +22,6 @@ describe('CreateTaskController', () => {
   beforeEach(async() => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        AccountModule,
         JwtAuthModule,
       ],
       controllers: [
@@ -34,6 +33,10 @@ describe('CreateTaskController', () => {
           useFactory: () => ({
             execute: jest.fn(() => {}),
           }),
+        },
+        {
+          provide: GetAccountByIdService,
+          useClass: jest.fn(),
         },
       ],
     }).compile();

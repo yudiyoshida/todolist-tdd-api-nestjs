@@ -5,6 +5,7 @@ import { CreateTaskService } from './create-task.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
 import { JwtAuthModule } from 'src/modules/auth/jwt.module';
 import { PayloadDto } from 'src/shared/types/payload.type';
+import { AccountModule } from 'src/modules/account/account.module';
 
 describe('CreateTaskController', () => {
   let controller: CreateTaskController;
@@ -20,8 +21,13 @@ describe('CreateTaskController', () => {
 
   beforeEach(async() => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [JwtAuthModule],
-      controllers: [CreateTaskController],
+      imports: [
+        AccountModule,
+        JwtAuthModule,
+      ],
+      controllers: [
+        CreateTaskController,
+      ],
       providers: [
         {
           provide: CreateTaskService,

@@ -33,6 +33,10 @@ export class CreateAccountService {
     const permissions: AccountPermission[] = [];
 
     permissions.push({ action: AccountPermissionsEnum.TASK_CREATE_ONE });
+    permissions.push({ action: AccountPermissionsEnum.TASK_DELETE_ONE });
+    permissions.push({ action: AccountPermissionsEnum.TASK_GET_ALL });
+    permissions.push({ action: AccountPermissionsEnum.TASK_GET_ONE });
+    permissions.push({ action: AccountPermissionsEnum.TASK_UPDATE_ONE });
 
     return permissions;
   }

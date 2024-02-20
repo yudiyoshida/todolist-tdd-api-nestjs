@@ -1,15 +1,24 @@
 import { Injectable } from '@nestjs/common';
 
-import { Task } from '../../entities/task.entity';
+import { ITaskDto } from '../../entities/task.entity';
 import { CreateTaskDto } from '../../use-cases/create-task/dtos/create-task.dto';
 import { ITaskRepository } from '../task-repository.interface';
 
 @Injectable()
 export class TaskInMemoryRepository implements ITaskRepository {
-  public readonly _tasks: Task[] = [];
+  public readonly _tasks: ITaskDto[] = [];
+
+  public async findAllWithPagination(page: number, size: number) {
+    const take = size;
+    const skip = ((page - 1) * size);
+
+    const tasks = this._tasks.slice(skip, skip + take);
+
+    return [tasks, this._tasks.length] as [ITaskDto[], number];
+  }
 
   public async save(data: CreateTaskDto, accountId: string) {
-    const newTask: Task = {
+    const newTask: ITaskDto = {
       id: crypto.randomUUID(),
       title: data.title,
       description: data.description ?? null,

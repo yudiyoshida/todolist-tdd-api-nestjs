@@ -14,7 +14,6 @@ export class GetAccountByIdService {
     if (!account) {
       throw new NotFoundException('Conta não encontrada na base de dados.');
     }
-
     return account;
   }
 }

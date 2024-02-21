@@ -1,6 +1,6 @@
 import { AccountPermission } from '../entities/account-permission.entity';
-import { CreateAccountDto } from '../use-cases/create-account/dtos/create-account.dto';
 import { IAccountDto } from '../entities/account.entity';
+import { CreateAccountDto } from '../use-cases/create-account/dtos/create-account.dto';
 
 export interface IAccountRepository {
   findById(id: string): Promise<Omit<IAccountDto, 'password'> | null>;

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { IHashingHelper } from '../hashing.interface';
+
 import * as bcrypt from 'bcrypt';
 
 @Injectable()

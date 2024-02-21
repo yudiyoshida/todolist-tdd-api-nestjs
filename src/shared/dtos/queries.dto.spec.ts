@@ -1,5 +1,5 @@
-import { Queries } from './queries.dto';
 import { getFieldErrors, validateDto } from 'src/shared/validators/validate-dto';
+import { Queries } from './queries.dto';
 
 describe('Query', () => {
   describe('page field', () => {

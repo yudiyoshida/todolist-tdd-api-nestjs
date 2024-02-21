@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
+import { GetAccountByIdService } from 'src/modules/account/use-cases/get-account-by-id/get-account-by-id.service';
 import { TOKENS } from 'src/shared/di/tokens';
+import { TaskInMemoryRepository } from '../../repositories/adapters/task-in-memory.repository';
 import { CreateTaskService } from './create-task.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
-import { TaskInMemoryRepository } from '../../repositories/adapters/task-in-memory.repository';
-import { GetAccountByIdService } from 'src/modules/account/use-cases/get-account-by-id/get-account-by-id.service';
 
 describe('CreateTaskService', () => {
   let service: CreateTaskService;

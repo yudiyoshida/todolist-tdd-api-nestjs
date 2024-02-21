@@ -1,8 +1,8 @@
 import { Module, Provider } from '@nestjs/common';
 
 import { TOKENS } from 'src/shared/di/tokens';
-import { AccountInMemoryRepository } from './repositories/adapters/account-in-memory.repository';
 import { BcryptAdapter } from 'src/shared/helpers/hashing/adapters/bcrypt';
+import { AccountInMemoryRepository } from './repositories/adapters/account-in-memory.repository';
 
 import { CreateAccountController } from './use-cases/create-account/create-account.controller';
 import { CreateAccountService } from './use-cases/create-account/create-account.service';

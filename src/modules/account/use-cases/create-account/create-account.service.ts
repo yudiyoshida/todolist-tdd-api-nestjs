@@ -1,11 +1,11 @@
 import { ConflictException, Inject, Injectable } from '@nestjs/common';
 
+import { AccountPermissionsEnum } from 'src/modules/auth/enums/permissions.enum';
 import { TOKENS } from 'src/shared/di/tokens';
 import { IHashingHelper } from 'src/shared/helpers/hashing/hashing.interface';
-import { CreateAccountDto } from './dtos/create-account.dto';
-import { IAccountRepository } from '../../repositories/account-repository.interface';
 import { AccountPermission } from '../../entities/account-permission.entity';
-import { AccountPermissionsEnum } from 'src/modules/auth/enums/permissions.enum';
+import { IAccountRepository } from '../../repositories/account-repository.interface';
+import { CreateAccountDto } from './dtos/create-account.dto';
 
 @Injectable()
 export class CreateAccountService {

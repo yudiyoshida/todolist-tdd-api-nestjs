@@ -3,8 +3,8 @@ import * as crypto from 'crypto';
 
 import { IAccountRepository } from '../account-repository.interface';
 
-import { IAccountDto } from '../../entities/account.entity';
 import { IAccountPermissionDto } from '../../entities/account-permission.entity';
+import { IAccountDto } from '../../entities/account.entity';
 import { CreateAccountDto } from '../../use-cases/create-account/dtos/create-account.dto';
 
 @Injectable()

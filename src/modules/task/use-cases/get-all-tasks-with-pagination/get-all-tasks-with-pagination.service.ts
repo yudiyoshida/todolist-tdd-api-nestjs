@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
+
 import { TOKENS } from 'src/shared/di/tokens';
-import { ITaskRepository } from '../../repositories/task-repository.interface';
 import { PaginationService } from 'src/shared/helpers/pagination/pagination.service';
+import { ITaskRepository } from '../../repositories/task-repository.interface';
 
 @Injectable()
 export class GetAllTasksWithPaginationService {

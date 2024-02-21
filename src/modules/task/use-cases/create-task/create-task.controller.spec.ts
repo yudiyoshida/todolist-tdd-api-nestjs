@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
+import { GetAccountByIdService } from 'src/modules/account/use-cases/get-account-by-id/get-account-by-id.service';
+import { JwtAuthModule } from 'src/modules/auth/jwt.module';
+import { PayloadDto } from '../../../auth/types/payload.type';
 import { CreateTaskController } from './create-task.controller';
 import { CreateTaskService } from './create-task.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
-import { JwtAuthModule } from 'src/modules/auth/jwt.module';
-import { PayloadDto } from '../../../auth/types/payload.type';
-import { GetAccountByIdService } from 'src/modules/account/use-cases/get-account-by-id/get-account-by-id.service';
 
 describe('CreateTaskController', () => {
   let controller: CreateTaskController;

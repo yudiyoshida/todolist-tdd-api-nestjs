@@ -1,12 +1,12 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { ConflictException } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
 
 import { TOKENS } from 'src/shared/di/tokens';
 import { BcryptAdapter } from 'src/shared/helpers/hashing/adapters/bcrypt';
 import { AccountInMemoryRepository } from '../../repositories/adapters/account-in-memory.repository';
 
-import { CreateAccountDto } from './dtos/create-account.dto';
 import { CreateAccountService } from './create-account.service';
+import { CreateAccountDto } from './dtos/create-account.dto';
 
 describe('CreateAccountService', () => {
   let service: CreateAccountService;

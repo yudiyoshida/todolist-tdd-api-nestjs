@@ -1,5 +1,5 @@
-import { CreateTaskDto } from './create-task.dto';
 import { getFieldErrors, validateDto } from 'src/shared/validators/validate-dto';
+import { CreateTaskDto } from './create-task.dto';
 
 describe('CreateTaskDto', () => {
   const data: CreateTaskDto = {

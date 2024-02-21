@@ -1,5 +1,5 @@
-import { CreateAccountDto } from './create-account.dto';
 import { getFieldErrors, validateDto } from 'src/shared/validators/validate-dto';
+import { CreateAccountDto } from './create-account.dto';
 
 describe('CreateAccountDto', () => {
   const data: CreateAccountDto = {

@@ -1,13 +1,13 @@
 import { Body, Controller, Post } from '@nestjs/common';
 
 import { Auth } from 'src/modules/auth/decorators/auth.decorator';
-import { AccountPermissionsEnum } from 'src/modules/auth/enums/permissions.enum';
-import { CreateTaskDto } from './dtos/create-task.dto';
-import { CreateTaskService } from './create-task.service';
-import { PayloadDto } from '../../../auth/types/payload.type';
 import { RequiredPermission } from 'src/modules/auth/decorators/required-permission.decorator';
+import { AccountPermissionsEnum } from 'src/modules/auth/enums/permissions.enum';
 import { Swagger } from 'src/shared/decorators/swagger';
+import { PayloadDto } from '../../../auth/types/payload.type';
 import { Task } from '../../entities/task.entity';
+import { CreateTaskService } from './create-task.service';
+import { CreateTaskDto } from './dtos/create-task.dto';
 
 @Controller('tasks')
 export class CreateTaskController {

@@ -1,16 +1,16 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { BadRequestException } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
+import { Test, TestingModule } from '@nestjs/testing';
 
 import { isJWT } from 'class-validator';
 
+import { AccountInMemoryRepository } from 'src/modules/account/repositories/adapters/account-in-memory.repository';
 import { TOKENS } from 'src/shared/di/tokens';
 import { BcryptAdapter } from 'src/shared/helpers/hashing/adapters/bcrypt';
-import { LoginService } from './login.service';
 import { CreateAccountService } from '../../../account/use-cases/create-account/create-account.service';
-import { LoginDto } from './dtos/login.dto';
 import { CreateAccountDto } from '../../../account/use-cases/create-account/dtos/create-account.dto';
-import { AccountInMemoryRepository } from 'src/modules/account/repositories/adapters/account-in-memory.repository';
+import { LoginDto } from './dtos/login.dto';
+import { LoginService } from './login.service';
 
 describe('LoginService', () => {
   let service: LoginService;

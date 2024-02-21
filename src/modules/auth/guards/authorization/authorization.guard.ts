@@ -2,9 +2,9 @@ import { CanActivate, ExecutionContext, ForbiddenException, Injectable } from '@
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 
+import { GetAccountByIdService } from 'src/modules/account/use-cases/get-account-by-id/get-account-by-id.service';
 import { PERMISSION_KEY } from '../../decorators/set-permission.decorator';
 import { AccountPermissionsEnum } from '../../enums/permissions.enum';
-import { GetAccountByIdService } from 'src/modules/account/use-cases/get-account-by-id/get-account-by-id.service';
 
 @Injectable()
 export class AuthorizationGuard implements CanActivate {

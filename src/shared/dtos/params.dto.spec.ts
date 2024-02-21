@@ -1,5 +1,5 @@
-import { Params } from './params.dto';
 import { getFieldErrors, validateDto } from 'src/shared/validators/validate-dto';
+import { Params } from './params.dto';
 
 describe('Params', () => {
   describe('id field', () => {

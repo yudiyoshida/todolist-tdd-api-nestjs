@@ -1,5 +1,5 @@
-import { LoginDto } from './login.dto';
 import { getFieldErrors, validateDto } from 'src/shared/validators/validate-dto';
+import { LoginDto } from './login.dto';
 
 describe('LoginDto', () => {
   const data: LoginDto = {

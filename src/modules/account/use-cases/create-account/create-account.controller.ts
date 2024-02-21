@@ -3,8 +3,8 @@ import { OmitType } from '@nestjs/swagger';
 
 import { Swagger } from 'src/shared/decorators/swagger';
 import { Account } from '../../entities/account.entity';
-import { CreateAccountDto } from './dtos/create-account.dto';
 import { CreateAccountService } from './create-account.service';
+import { CreateAccountDto } from './dtos/create-account.dto';
 
 @Controller('accounts')
 export class CreateAccountController {

@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { JwtService } from '@nestjs/jwt';
+import { Test, TestingModule } from '@nestjs/testing';
 
-import { AuthorizationGuard } from './authorization.guard';
 import { GetAccountByIdService } from 'src/modules/account/use-cases/get-account-by-id/get-account-by-id.service';
+import { AuthorizationGuard } from './authorization.guard';
 
 describe('AuthorizationGuard', () => {
   let guard: AuthorizationGuard;

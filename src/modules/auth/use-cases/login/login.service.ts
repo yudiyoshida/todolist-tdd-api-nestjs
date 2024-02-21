@@ -1,11 +1,11 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import { TOKENS } from 'src/shared/di/tokens';
 import { IAccountRepository } from 'src/modules/account/repositories/account-repository.interface';
-import { LoginDto } from './dtos/login.dto';
+import { TOKENS } from 'src/shared/di/tokens';
 import { IHashingHelper } from 'src/shared/helpers/hashing/hashing.interface';
 import { PayloadDto } from '../../types/payload.type';
+import { LoginDto } from './dtos/login.dto';
 
 @Injectable()
 export class LoginService {

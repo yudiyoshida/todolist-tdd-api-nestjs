@@ -17,6 +17,10 @@ export class TaskInMemoryRepository implements ITaskRepository {
     return [tasks, this._tasks.length] as [ITaskDto[], number];
   }
 
+  public async findById(id: string, userId: string) {
+    return this._tasks.find(item => item.id === id && item.accountId === userId);
+  }
+
   public async save(data: CreateTaskDto, accountId: string) {
     const newTask: ITaskDto = {
       id: crypto.randomUUID(),

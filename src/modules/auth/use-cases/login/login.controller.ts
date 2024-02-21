@@ -11,7 +11,7 @@ export class LoginController {
   @Post('/')
   @HttpCode(HttpStatus.OK)
   @Swagger({
-    tags: ['Criar conta'],
+    tags: ['Autenticação'],
     summary: 'Rota utilizada para realizar login',
     okResponse: LoginResponseDto,
     applyBadRequest: true,

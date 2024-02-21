@@ -18,6 +18,7 @@ export class GetAllTasksController {
     summary: 'Rota utilizada para listar as tasks do usuário logado',
     applyBadRequest: true,
     okResponse: [Task],
+    okPaginatedResponse: true,
   })
   public handle(@Query() query: Queries) {
     return this.getAllTasksService.execute(query.page, query.size);

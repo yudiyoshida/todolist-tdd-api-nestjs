@@ -1,5 +1,6 @@
 import { applyDecorators } from '@nestjs/common';
 import {
+  ApiAcceptedResponse,
   ApiBadRequestResponse,
   ApiConflictResponse,
   ApiCreatedResponse,
@@ -12,11 +13,13 @@ import {
 } from '@nestjs/swagger';
 
 import { ClientError, ServerError } from '../errors/error.entity';
+import { PaginationDto } from '../helpers/pagination/pagination.dto';
 
 type swaggerProps = {
   tags: string[];
   summary: string;
   okResponse?: any;
+  okPaginatedResponse?: boolean;
   createdResponse?: any;
   applyBadRequest?: boolean;
   applyConflict?: boolean;
@@ -30,6 +33,7 @@ export function Swagger(props: swaggerProps) {
     ApiOperation({ summary: props.summary }),
 
     applyOkResponse(props.okResponse),
+    applyOkPaginatedResponse(props.okPaginatedResponse),
     applyCreatedResponse(props.createdResponse),
     applyBadRequestResponse(props.applyBadRequest),
     applyNotFoundResponse(props.applyNotFound),
@@ -43,6 +47,10 @@ export function Swagger(props: swaggerProps) {
 function applyOkResponse(type?: any) {
   return type ? ApiOkResponse({ type, description: 'OK' }) : () => {};
 }
+
+function applyOkPaginatedResponse(apply?: boolean) {
+  return apply ? ApiAcceptedResponse({ type: PaginationDto, description: 'Paginação. O objeto dentro de \'data\' é o mesmo objeto de cima ↑↑' }) : () => {};
+};
 
 function applyCreatedResponse(type?: any) {
   return type ? ApiCreatedResponse({ type, description: 'Created' }) : () => {};

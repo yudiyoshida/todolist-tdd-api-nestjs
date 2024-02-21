@@ -9,8 +9,8 @@ import { TaskInMemoryRepository } from './repositories/adapters/task-in-memory.r
 import { CreateTaskController } from './use-cases/create-task/create-task.controller';
 import { CreateTaskService } from './use-cases/create-task/create-task.service';
 
-import { GetAllTasksWithPaginationController } from './use-cases/get-all-tasks-with-pagination/get-all-tasks-with-pagination.controller';
-import { GetAllTasksWithPaginationService } from './use-cases/get-all-tasks-with-pagination/get-all-tasks-with-pagination.service';
+import { GetAllTasksController } from './use-cases/get-all-tasks/get-all-tasks.controller';
+import { GetAllTasksService } from './use-cases/get-all-tasks/get-all-tasks.service';
 
 import { GetTaskByIdController } from './use-cases/get-task-by-id/get-task-by-id.controller';
 import { GetTaskByIdService } from './use-cases/get-task-by-id/get-task-by-id.service';
@@ -21,12 +21,12 @@ import { GetTaskByIdService } from './use-cases/get-task-by-id/get-task-by-id.se
   ],
   controllers: [
     CreateTaskController,
-    GetAllTasksWithPaginationController,
+    GetAllTasksController,
     GetTaskByIdController,
   ],
   providers: [
     CreateTaskService,
-    GetAllTasksWithPaginationService,
+    GetAllTasksService,
     GetTaskByIdService,
     {
       provide: TOKENS.ITaskRepository,

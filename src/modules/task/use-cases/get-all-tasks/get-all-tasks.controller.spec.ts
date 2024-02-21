@@ -2,12 +2,12 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { GetAccountByIdService } from 'src/modules/account/use-cases/get-account-by-id/get-account-by-id.service';
 import { JwtAuthModule } from 'src/modules/auth/jwt.module';
-import { GetAllTasksWithPaginationController } from './get-all-tasks-with-pagination.controller';
-import { GetAllTasksWithPaginationService } from './get-all-tasks-with-pagination.service';
+import { GetAllTasksController } from './get-all-tasks.controller';
+import { GetAllTasksService } from './get-all-tasks.service';
 
-describe('GetAllTasksWithPaginationController', () => {
-  let controller: GetAllTasksWithPaginationController;
-  let serviceMock: GetAllTasksWithPaginationService;
+describe('GetAllTasksController', () => {
+  let controller: GetAllTasksController;
+  let serviceMock: GetAllTasksService;
 
   beforeEach(async() => {
     const module: TestingModule = await Test.createTestingModule({
@@ -15,11 +15,11 @@ describe('GetAllTasksWithPaginationController', () => {
         JwtAuthModule,
       ],
       controllers: [
-        GetAllTasksWithPaginationController,
+        GetAllTasksController,
       ],
       providers: [
         {
-          provide: GetAllTasksWithPaginationService,
+          provide: GetAllTasksService,
           useFactory: () => ({
             execute: jest.fn(() => {}),
           }),
@@ -31,8 +31,8 @@ describe('GetAllTasksWithPaginationController', () => {
       ],
     }).compile();
 
-    controller = module.get<GetAllTasksWithPaginationController>(GetAllTasksWithPaginationController);
-    serviceMock = module.get<GetAllTasksWithPaginationService>(GetAllTasksWithPaginationService);
+    controller = module.get<GetAllTasksController>(GetAllTasksController);
+    serviceMock = module.get<GetAllTasksService>(GetAllTasksService);
   });
 
   it('should be defined', () => {

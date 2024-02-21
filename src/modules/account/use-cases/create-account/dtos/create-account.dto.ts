@@ -1,5 +1,5 @@
-import { Trim } from 'src/shared/validators/trim';
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { Trim } from 'src/shared/validators/decorators/trim';
 
 export class CreateAccountDto {
   @IsString({

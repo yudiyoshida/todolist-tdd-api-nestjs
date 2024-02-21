@@ -1,5 +1,5 @@
 import { Params } from './params.dto';
-import { getErrorsFromField, validateDto } from 'src/shared/validators/validate-dto';
+import { getFieldErrors, validateDto } from 'src/shared/validators/validate-dto';
 
 describe('Params', () => {
   describe('id field', () => {
@@ -7,7 +7,7 @@ describe('Params', () => {
       const dto = new Params();
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Params>(result, 'id');
+      const errors = getFieldErrors<Params>(result, 'id');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'id é um campo obrigatório.');
     });
@@ -17,7 +17,7 @@ describe('Params', () => {
       dto.id = null;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Params>(result, 'id');
+      const errors = getFieldErrors<Params>(result, 'id');
 
       expect(errors.constraints).toHaveProperty('isString', 'id deve ser do tipo string.');
     });
@@ -27,7 +27,7 @@ describe('Params', () => {
       dto.id = (123 as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Params>(result, 'id');
+      const errors = getFieldErrors<Params>(result, 'id');
 
       expect(errors.constraints).toHaveProperty('isString', 'id deve ser do tipo string.');
     });
@@ -37,7 +37,7 @@ describe('Params', () => {
       dto.id = (false as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Params>(result, 'id');
+      const errors = getFieldErrors<Params>(result, 'id');
 
       expect(errors.constraints).toHaveProperty('isString', 'id deve ser do tipo string.');
     });

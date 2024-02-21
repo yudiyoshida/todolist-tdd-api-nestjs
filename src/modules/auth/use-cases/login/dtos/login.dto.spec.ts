@@ -1,5 +1,5 @@
 import { LoginDto } from './login.dto';
-import { getErrorsFromField, validateDto } from 'src/shared/validators/validate-dto';
+import { getFieldErrors, validateDto } from 'src/shared/validators/validate-dto';
 
 describe('LoginDto', () => {
   const data: LoginDto = {
@@ -12,7 +12,7 @@ describe('LoginDto', () => {
       const dto = new LoginDto();
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<LoginDto>(result, 'email');
+      const errors = getFieldErrors<LoginDto>(result, 'email');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'Email é um campo obrigatório.');
     });
@@ -22,7 +22,7 @@ describe('LoginDto', () => {
       dto.email = null;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<LoginDto>(result, 'email');
+      const errors = getFieldErrors<LoginDto>(result, 'email');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'Email é um campo obrigatório.');
     });
@@ -32,7 +32,7 @@ describe('LoginDto', () => {
       dto.email = (123 as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<LoginDto>(result, 'email');
+      const errors = getFieldErrors<LoginDto>(result, 'email');
 
       expect(errors.constraints).toHaveProperty('isString', 'Email deve ser do tipo string.');
     });
@@ -42,7 +42,7 @@ describe('LoginDto', () => {
       dto.email = (true as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<LoginDto>(result, 'email');
+      const errors = getFieldErrors<LoginDto>(result, 'email');
 
       expect(errors.constraints).toHaveProperty('isString', 'Email deve ser do tipo string.');
     });
@@ -54,7 +54,7 @@ describe('LoginDto', () => {
       dto.email = data.email;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<LoginDto>(result, 'password');
+      const errors = getFieldErrors<LoginDto>(result, 'password');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'Senha é um campo obrigatório.');
     });
@@ -65,7 +65,7 @@ describe('LoginDto', () => {
       dto.password = null;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<LoginDto>(result, 'password');
+      const errors = getFieldErrors<LoginDto>(result, 'password');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'Senha é um campo obrigatório.');
     });
@@ -76,7 +76,7 @@ describe('LoginDto', () => {
       dto.password = (123 as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<LoginDto>(result, 'password');
+      const errors = getFieldErrors<LoginDto>(result, 'password');
 
       expect(errors.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
     });
@@ -87,7 +87,7 @@ describe('LoginDto', () => {
       dto.password = (true as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<LoginDto>(result, 'password');
+      const errors = getFieldErrors<LoginDto>(result, 'password');
 
       expect(errors.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
     });

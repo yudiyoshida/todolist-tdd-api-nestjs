@@ -1,5 +1,5 @@
 import { CreateTaskDto } from './create-task.dto';
-import { getErrorsFromField, validateDto } from 'src/shared/validators/validate-dto';
+import { getFieldErrors, validateDto } from 'src/shared/validators/validate-dto';
 
 describe('CreateTaskDto', () => {
   const data: CreateTaskDto = {
@@ -12,7 +12,7 @@ describe('CreateTaskDto', () => {
       const dto = new CreateTaskDto();
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateTaskDto>(result, 'title');
+      const errors = getFieldErrors<CreateTaskDto>(result, 'title');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'Título é um campo obrigatório.');
     });
@@ -22,7 +22,7 @@ describe('CreateTaskDto', () => {
       dto.title = null;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateTaskDto>(result, 'title');
+      const errors = getFieldErrors<CreateTaskDto>(result, 'title');
 
       expect(errors.constraints).toHaveProperty('isString', 'Título deve ser do tipo string.');
     });
@@ -32,7 +32,7 @@ describe('CreateTaskDto', () => {
       dto.title = (123 as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateTaskDto>(result, 'title');
+      const errors = getFieldErrors<CreateTaskDto>(result, 'title');
 
       expect(errors.constraints).toHaveProperty('isString', 'Título deve ser do tipo string.');
     });
@@ -42,7 +42,7 @@ describe('CreateTaskDto', () => {
       dto.title = (false as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateTaskDto>(result, 'title');
+      const errors = getFieldErrors<CreateTaskDto>(result, 'title');
 
       expect(errors.constraints).toHaveProperty('isString', 'Título deve ser do tipo string.');
     });
@@ -74,7 +74,7 @@ describe('CreateTaskDto', () => {
       dto.description = (123 as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateTaskDto>(result, 'description');
+      const errors = getFieldErrors<CreateTaskDto>(result, 'description');
 
       expect(errors.constraints).toHaveProperty('isString', 'Descrição deve ser do tipo string.');
     });
@@ -85,7 +85,7 @@ describe('CreateTaskDto', () => {
       dto.description = (false as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateTaskDto>(result, 'description');
+      const errors = getFieldErrors<CreateTaskDto>(result, 'description');
 
       expect(errors.constraints).toHaveProperty('isString', 'Descrição deve ser do tipo string.');
     });

@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { Trim } from 'src/shared/validators/trim';
+import { Trim } from 'src/shared/validators/decorators/trim';
 
 export class LoginDto {
   @IsString({

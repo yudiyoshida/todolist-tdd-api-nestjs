@@ -8,7 +8,7 @@ export class BcryptAdapter implements IHashingHelper {
     return bcrypt.compareSync(text, hashText);
   }
 
-  public hash(text: string, saltOrRounds?: number): string {
+  public hash(text: string, saltOrRounds?: string | number): string {
     return bcrypt.hashSync(text, saltOrRounds || 10);
   }
 }

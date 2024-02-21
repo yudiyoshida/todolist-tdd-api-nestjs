@@ -1,5 +1,5 @@
 import { Queries } from './queries.dto';
-import { getErrorsFromField, validateDto } from 'src/shared/validators/validate-dto';
+import { getFieldErrors, validateDto } from 'src/shared/validators/validate-dto';
 
 describe('Query', () => {
   describe('page field', () => {
@@ -25,7 +25,7 @@ describe('Query', () => {
       dto.page = ('12AB' as unknown as number);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Queries>(result, 'page');
+      const errors = getFieldErrors<Queries>(result, 'page');
 
       expect(errors.constraints).toHaveProperty('isInt', 'page deve ser um número inteiro.');
     });
@@ -35,7 +35,7 @@ describe('Query', () => {
       dto.page = (false as unknown as number);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Queries>(result, 'page');
+      const errors = getFieldErrors<Queries>(result, 'page');
 
       expect(errors.constraints).toHaveProperty('isInt', 'page deve ser um número inteiro.');
     });
@@ -45,7 +45,7 @@ describe('Query', () => {
       dto.page = 1.5;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Queries>(result, 'page');
+      const errors = getFieldErrors<Queries>(result, 'page');
 
       expect(errors.constraints).toHaveProperty('isInt', 'page deve ser um número inteiro.');
     });
@@ -55,7 +55,7 @@ describe('Query', () => {
       dto.page = 0;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Queries>(result, 'page');
+      const errors = getFieldErrors<Queries>(result, 'page');
 
       expect(errors.constraints).toHaveProperty('isPositive', 'page deve ser um número positivo.');
     });
@@ -65,7 +65,7 @@ describe('Query', () => {
       dto.page = -1;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Queries>(result, 'page');
+      const errors = getFieldErrors<Queries>(result, 'page');
 
       expect(errors.constraints).toHaveProperty('isPositive', 'page deve ser um número positivo.');
     });
@@ -94,7 +94,7 @@ describe('Query', () => {
       dto.size = ('12AB' as unknown as number);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Queries>(result, 'size');
+      const errors = getFieldErrors<Queries>(result, 'size');
 
       expect(errors.constraints).toHaveProperty('isInt', 'size deve ser um número inteiro.');
     });
@@ -104,7 +104,7 @@ describe('Query', () => {
       dto.size = (false as unknown as number);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Queries>(result, 'size');
+      const errors = getFieldErrors<Queries>(result, 'size');
 
       expect(errors.constraints).toHaveProperty('isInt', 'size deve ser um número inteiro.');
     });
@@ -114,7 +114,7 @@ describe('Query', () => {
       dto.size = 1.5;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Queries>(result, 'size');
+      const errors = getFieldErrors<Queries>(result, 'size');
 
       expect(errors.constraints).toHaveProperty('isInt', 'size deve ser um número inteiro.');
     });
@@ -124,7 +124,7 @@ describe('Query', () => {
       dto.size = 0;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Queries>(result, 'size');
+      const errors = getFieldErrors<Queries>(result, 'size');
 
       expect(errors.constraints).toHaveProperty('isPositive', 'size deve ser um número positivo.');
     });
@@ -134,7 +134,7 @@ describe('Query', () => {
       dto.size = -1;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<Queries>(result, 'size');
+      const errors = getFieldErrors<Queries>(result, 'size');
 
       expect(errors.constraints).toHaveProperty('isPositive', 'size deve ser um número positivo.');
     });

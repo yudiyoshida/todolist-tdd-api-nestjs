@@ -1,5 +1,5 @@
 import { CreateAccountDto } from './create-account.dto';
-import { getErrorsFromField, validateDto } from 'src/shared/validators/validate-dto';
+import { getFieldErrors, validateDto } from 'src/shared/validators/validate-dto';
 
 describe('CreateAccountDto', () => {
   const data: CreateAccountDto = {
@@ -13,7 +13,7 @@ describe('CreateAccountDto', () => {
       const dto = new CreateAccountDto();
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'name');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'name');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'Nome é um campo obrigatório.');
     });
@@ -23,7 +23,7 @@ describe('CreateAccountDto', () => {
       dto.name = null;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'name');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'name');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'Nome é um campo obrigatório.');
     });
@@ -33,7 +33,7 @@ describe('CreateAccountDto', () => {
       dto.name = (123 as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'name');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'name');
 
       expect(errors.constraints).toHaveProperty('isString', 'Nome deve ser do tipo string.');
     });
@@ -43,7 +43,7 @@ describe('CreateAccountDto', () => {
       dto.name = (true as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'name');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'name');
 
       expect(errors.constraints).toHaveProperty('isString', 'Nome deve ser do tipo string.');
     });
@@ -55,7 +55,7 @@ describe('CreateAccountDto', () => {
       dto.name = data.name;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'email');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'email');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'Email é um campo obrigatório.');
     });
@@ -66,7 +66,7 @@ describe('CreateAccountDto', () => {
       dto.email = null;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'email');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'email');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'Email é um campo obrigatório.');
     });
@@ -77,7 +77,7 @@ describe('CreateAccountDto', () => {
       dto.email = 'invalid@@email.com';
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'email');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'email');
 
       expect(errors.constraints).toHaveProperty('isEmail', 'Email inválido.');
     });
@@ -90,7 +90,7 @@ describe('CreateAccountDto', () => {
       dto.email = data.email;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'password');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'password');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'Senha é um campo obrigatório.');
     });
@@ -102,7 +102,7 @@ describe('CreateAccountDto', () => {
       dto.password = null;
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'password');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'password');
 
       expect(errors.constraints).toHaveProperty('isNotEmpty', 'Senha é um campo obrigatório.');
     });
@@ -114,7 +114,7 @@ describe('CreateAccountDto', () => {
       dto.password = (123 as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'password');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'password');
 
       expect(errors.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
     });
@@ -126,7 +126,7 @@ describe('CreateAccountDto', () => {
       dto.password = (true as unknown as string);
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'password');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'password');
 
       expect(errors.constraints).toHaveProperty('isString', 'Senha deve ser do tipo string.');
     });
@@ -138,7 +138,7 @@ describe('CreateAccountDto', () => {
       dto.password = '1234567';
 
       const result = validateDto(dto);
-      const errors = getErrorsFromField<CreateAccountDto>(result, 'password');
+      const errors = getFieldErrors<CreateAccountDto>(result, 'password');
 
       expect(errors.constraints).toHaveProperty('minLength', 'Senha deve conter, no mínimo, 8 caracteres.');
     });

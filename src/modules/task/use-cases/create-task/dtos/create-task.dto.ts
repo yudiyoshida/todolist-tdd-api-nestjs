@@ -1,5 +1,5 @@
-import { Trim } from 'src/shared/validators/trim';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Trim } from 'src/shared/validators/decorators/trim';
 
 export class CreateTaskDto {
   @IsString({

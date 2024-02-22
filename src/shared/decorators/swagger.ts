@@ -18,6 +18,7 @@ import { PaginationDto } from '../helpers/pagination/pagination.dto';
 type swaggerProps = {
   tags: string[];
   summary: string;
+  description?: string;
   okResponse?: any;
   okPaginatedResponse?: boolean;
   createdResponse?: any;
@@ -30,7 +31,7 @@ type swaggerProps = {
 export function Swagger(props: swaggerProps) {
   return applyDecorators(
     ApiTags(...props.tags),
-    ApiOperation({ summary: props.summary }),
+    ApiOperation({ summary: props.summary, description: props.description }),
 
     applyOkResponse(props.okResponse),
     applyOkPaginatedResponse(props.okPaginatedResponse),

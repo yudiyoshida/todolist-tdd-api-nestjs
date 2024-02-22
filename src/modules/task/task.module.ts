@@ -15,6 +15,9 @@ import { GetAllTasksService } from './use-cases/get-all-tasks/get-all-tasks.serv
 import { GetTaskByIdController } from './use-cases/get-task-by-id/get-task-by-id.controller';
 import { GetTaskByIdService } from './use-cases/get-task-by-id/get-task-by-id.service';
 
+import { DeleteTaskController } from './use-cases/delete-task/delete-task.controller';
+import { DeleteTaskService } from './use-cases/delete-task/delete-task.service';
+
 @Module({
   imports: [
     AccountModule,
@@ -23,11 +26,13 @@ import { GetTaskByIdService } from './use-cases/get-task-by-id/get-task-by-id.se
     CreateTaskController,
     GetAllTasksController,
     GetTaskByIdController,
+    DeleteTaskController,
   ],
   providers: [
     CreateTaskService,
     GetAllTasksService,
     GetTaskByIdService,
+    DeleteTaskService,
     {
       provide: TOKENS.ITaskRepository,
       useClass: TaskInMemoryRepository,

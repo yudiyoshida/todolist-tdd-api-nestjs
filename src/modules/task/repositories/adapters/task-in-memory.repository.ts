@@ -38,4 +38,13 @@ export class TaskInMemoryRepository implements ITaskRepository {
 
     return newTask;
   }
+
+  public async delete(id: string) {
+    const index = this._tasks.findIndex(item => item.id === id);
+    const task = this._tasks.at(index);
+
+    this._tasks.splice(index, 1);
+
+    return task;
+  }
 }

@@ -21,8 +21,8 @@ export class TaskInMemoryRepository implements ITaskRepository {
     return this._tasks;
   }
 
-  public async findById(id: string, userId: string) {
-    return this._tasks.find(item => item.id === id && item.accountId === userId);
+  public async findById(id: string, accountId: string) {
+    return this._tasks.find(item => item.id === id && item.accountId === accountId);
   }
 
   public async save(data: CreateTaskDto, accountId: string) {

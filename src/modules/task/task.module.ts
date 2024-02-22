@@ -4,7 +4,7 @@ import { AccountModule } from '../account/account.module';
 
 import { TOKENS } from 'src/shared/di/tokens';
 import { PaginationService } from 'src/shared/helpers/pagination/pagination.service';
-import { TaskInMemoryRepository } from './repositories/adapters/task-in-memory.repository';
+import { TaskPrismaRepository } from './repositories/adapters/task-prisma.repository';
 
 import { CreateTaskController } from './use-cases/create-task/create-task.controller';
 import { CreateTaskService } from './use-cases/create-task/create-task.service';
@@ -40,7 +40,7 @@ import { ChangeTaskStatusService } from './use-cases/change-task-status/change-t
     ChangeTaskStatusService,
     {
       provide: TOKENS.ITaskRepository,
-      useClass: TaskInMemoryRepository,
+      useClass: TaskPrismaRepository,
     },
     PaginationService,
   ],

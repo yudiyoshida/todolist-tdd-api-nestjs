@@ -39,6 +39,16 @@ export class TaskInMemoryRepository implements ITaskRepository {
     return newTask;
   }
 
+  public async updateStatus(id: string, status: boolean) {
+    this._tasks.map(item => {
+      if (item.id === id) {
+        item.isDone = status;
+      }
+    });
+
+    return this._tasks.find(item => item.id === id);
+  }
+
   public async delete(id: string) {
     const index = this._tasks.findIndex(item => item.id === id);
     const task = this._tasks.at(index);

@@ -6,5 +6,6 @@ export interface ITaskRepository {
   findAllNoPagination(): Promise<ITaskDto[]>;
   findById(id: string, userId: string): Promise<ITaskDto | null>;
   save(data: CreateTaskDto, accountId: string): Promise<ITaskDto>;
+  updateStatus(id: string, status: boolean): Promise<ITaskDto>;
   delete(id: string): Promise<ITaskDto>;
 }

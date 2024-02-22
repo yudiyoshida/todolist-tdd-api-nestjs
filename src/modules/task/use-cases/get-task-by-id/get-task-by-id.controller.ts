@@ -9,11 +9,11 @@ import { Params } from 'src/shared/dtos/params.dto';
 import { Task } from '../../entities/task.entity';
 import { GetTaskByIdService } from './get-task-by-id.service';
 
-@Controller('tasks')
+@Controller()
 export class GetTaskByIdController {
   constructor(private getTaskByIdService: GetTaskByIdService) {}
 
-  @Get('/:id')
+  @Get(':id')
   @RequiredPermission(AccountPermissionsEnum.TASK_GET_ONE)
   @Swagger({
     tags: ['Tasks'],

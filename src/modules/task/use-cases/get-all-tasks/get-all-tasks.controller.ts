@@ -7,11 +7,11 @@ import { Queries } from 'src/shared/dtos/queries.dto';
 import { Task } from '../../entities/task.entity';
 import { GetAllTasksService } from './get-all-tasks.service';
 
-@Controller('tasks')
+@Controller()
 export class GetAllTasksController {
   constructor(private getAllTasksService: GetAllTasksService) {}
 
-  @Get('/')
+  @Get()
   @RequiredPermission(AccountPermissionsEnum.TASK_GET_ALL)
   @Swagger({
     tags: ['Tasks'],

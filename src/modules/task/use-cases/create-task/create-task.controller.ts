@@ -9,11 +9,11 @@ import { Task } from '../../entities/task.entity';
 import { CreateTaskService } from './create-task.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
 
-@Controller('tasks')
+@Controller()
 export class CreateTaskController {
   constructor(private createTaskService: CreateTaskService) {}
 
-  @Post('/')
+  @Post()
   @RequiredPermission(AccountPermissionsEnum.TASK_CREATE_ONE)
   @Swagger({
     tags: ['Tasks'],

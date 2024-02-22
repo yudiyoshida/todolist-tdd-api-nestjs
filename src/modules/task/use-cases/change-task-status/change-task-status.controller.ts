@@ -9,11 +9,11 @@ import { Params } from 'src/shared/dtos/params.dto';
 import { Task } from '../../entities/task.entity';
 import { ChangeTaskStatusService } from './change-task-status.service';
 
-@Controller('tasks')
+@Controller()
 export class ChangeTaskStatusController {
   constructor(private changeTaskStatusService: ChangeTaskStatusService) {}
 
-  @Patch('/:id/update-status')
+  @Patch(':id/update-status')
   @RequiredPermission(AccountPermissionsEnum.TASK_UPDATE_ONE)
   @Swagger({
     tags: ['Tasks'],

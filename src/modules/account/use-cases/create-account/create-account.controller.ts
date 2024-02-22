@@ -6,11 +6,11 @@ import { Account } from '../../entities/account.entity';
 import { CreateAccountService } from './create-account.service';
 import { CreateAccountDto } from './dtos/create-account.dto';
 
-@Controller('accounts')
+@Controller()
 export class CreateAccountController {
   constructor(private createAccountService: CreateAccountService) {}
 
-  @Post('/')
+  @Post()
   @Swagger({
     tags: ['Conta'],
     summary: 'Rota utilizada para criar uma nova conta',

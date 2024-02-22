@@ -9,11 +9,11 @@ import { Params } from 'src/shared/dtos/params.dto';
 import { Task } from '../../entities/task.entity';
 import { DeleteTaskService } from './delete-task.service';
 
-@Controller('tasks')
+@Controller()
 export class DeleteTaskController {
   constructor(private deleteTaskService: DeleteTaskService) {}
 
-  @Delete('/:id')
+  @Delete(':id')
   @RequiredPermission(AccountPermissionsEnum.TASK_DELETE_ONE)
   @Swagger({
     tags: ['Tasks'],

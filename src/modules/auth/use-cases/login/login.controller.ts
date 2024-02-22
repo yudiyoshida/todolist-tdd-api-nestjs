@@ -4,11 +4,11 @@ import { Swagger } from 'src/shared/decorators/swagger';
 import { LoginDto, LoginResponseDto } from './dtos/login.dto';
 import { LoginService } from './login.service';
 
-@Controller('login')
+@Controller()
 export class LoginController {
   constructor(private loginService: LoginService) {}
 
-  @Post('/')
+  @Post()
   @HttpCode(HttpStatus.OK)
   @Swagger({
     tags: ['Autenticação'],
